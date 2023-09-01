@@ -72,7 +72,7 @@ export const AdminManagement = () => {
                     <div className="mainSectionWrapper">
                         <div className="heading">
                             <p>
-                                ADMIN
+                                MANAGE ADMIN
                             </p>
                         </div>
                         <div className="card cardForm">

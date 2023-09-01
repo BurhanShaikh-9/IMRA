@@ -26,7 +26,7 @@ export const Faqs = () => {
         <div className="mainSectionWrapper">
           <div className="heading">
             <p>
-              FAQ'S
+              FAQS
             </p>
           </div>
           <div className="card cardForm">

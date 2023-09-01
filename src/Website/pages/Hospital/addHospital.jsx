@@ -10,7 +10,7 @@ export const AddHospital = () => {
                 <div className="container">
                     <div className="mainSectionWrapper">
                         <div className="heading">
-                            <p>Add Hospital</p>
+                            <p>ADD HOSPITAL</p>
                         </div>
                         <div className="card cardForm">
                             <div className="card-body">

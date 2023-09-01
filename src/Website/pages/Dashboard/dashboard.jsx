@@ -121,7 +121,7 @@ export const Dashboard = () => {
                       <div className="card-body">
                         <div className="chart">
                           <div className="chartHeading">
-                            <p>All Users</p>
+                            <p>Total Users</p>
                             <small>Current</small>
                           </div>
                           <div className="box box1">
@@ -140,7 +140,7 @@ export const Dashboard = () => {
                       <div className="card-body">
                         <div className="chart">
                           <div className="chartHeading">
-                            <p>All Active Users</p>
+                            <p>All Hospitals</p>
                             <small>Current</small>
                           </div>
                           <div className="box box1">
@@ -159,7 +159,7 @@ export const Dashboard = () => {
                       <div className="card-body">
                         <div className="chart">
                           <div className="chartHeading">
-                            <p>Reported Users</p>
+                            <p>Total Admin</p>
                             <small>Current</small>
                           </div>
                           <div className="box box1">

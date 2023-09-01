@@ -14,7 +14,7 @@ export const AddAdmin = () => {
                 <div className="container">
                     <div className="mainSectionWrapper">
                         <div className="heading">
-                            <p>Add Admin</p>
+                            <p>ADD ADMIN</p>
                         </div>
                         <div className="card cardForm">
                             <div className="card-body">

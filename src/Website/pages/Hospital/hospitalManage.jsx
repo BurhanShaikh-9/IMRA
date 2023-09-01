@@ -16,7 +16,7 @@ export const HospitalManage = () => {
                     <div className="mainSectionWrapper">
                         <div className="heading">
                             <p>
-                                Manage Hospital
+                                MANAGE HOSPITAL
                             </p>
                         </div>
                         <div className="card cardForm">

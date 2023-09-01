@@ -16,7 +16,7 @@ export const UserManage = () => {
                     <div className="mainSectionWrapper">
                         <div className="heading">
                             <p>
-                                Manage User
+                                MANAGE USER
                             </p>
                         </div>
                         <div className="card cardForm">

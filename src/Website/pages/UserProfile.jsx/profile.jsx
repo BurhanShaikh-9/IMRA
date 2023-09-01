@@ -8,7 +8,7 @@ export const Profile = () => {
                 <div className="container">
                     <div className="mainSectionWrapper">
                         <div className="heading">
-                            <p>Profile</p>
+                            <p>PROFILE</p>
                         </div>
                         <div className="card cardForm">
                             <div className="card-body">
