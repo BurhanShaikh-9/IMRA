@@ -3,13 +3,14 @@ import React, { useEffect, useState } from 'react';
 import { AiOutlineDelete } from 'react-icons/ai'
 import { BiMessageSquareEdit } from 'react-icons/bi'
 import { FiTrash } from 'react-icons/fi'
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../../../utils/routes';
 import { AdminService } from '../../../services/admin';
 
 export const AdminManagement = () => {
     const { getAllAdmin, patchAdminToggle } = AdminService();
     const [data, setData] = useState([]);
+    const navigate = useNavigate();
 
     // // USER Data
     useEffect(() => {
@@ -45,7 +46,7 @@ export const AdminManagement = () => {
         if (searchTerm === '') {
             return item;
         } else if (
-            item.username.toLowerCase().includes(searchTerm.toLowerCase())
+            item.fullname.toLowerCase().includes(searchTerm.toLowerCase())
         ) {
             return item;
         }
@@ -114,7 +115,7 @@ export const AdminManagement = () => {
                                                     </td>
                                                     <td>
                                                         <div className="actionButtons">
-                                                            <Link>
+                                                            <Link to={`/${ROUTES.UPDATE_ADMIN}/${item._id}`}>
                                                                 <BiMessageSquareEdit />
                                                             </Link>
                                                         </div>

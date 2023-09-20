@@ -4,23 +4,70 @@ import { AdminService } from '../../../services/admin'
 import TokenService from '../../../services/tokenService';
 export const Profile = () => {
 
-const {getSingleAdmin} = AdminService();
-const { getUserCookie } = TokenService();
+    const { getSingleAdmin, patchAdmin } = AdminService();
+    const { getUserCookie } = TokenService();
 
-let userId = getUserCookie()
-const [userObject, setUserObject] = useState({});
+    let userId = getUserCookie()
+    const [userObject, setUserObject] = useState({});
 
-useEffect(() => {
-    if (userId) {
-        getSingleAdmin(userId).then((res) => {
-            const { addAdmin, addHospital, manageAdmin, manageHospital, services, ...filteredAdminData } = res?.data?.data;
-            setUserObject(filteredAdminData)
-            console.log(filteredAdminData, 'res');
-        }).catch((err) => {
-            console.log(err, 'err');
+    useEffect(() => {
+        if (userId) {
+            getSingleAdmin(userId).then((res) => {
+                const { addAdmin, addHospital, manageAdmin, manageHospital, services, ...filteredAdminData } = res?.data?.data;
+                setUserObject(filteredAdminData)
+                console.log(filteredAdminData, 'res');
+            }).catch((err) => {
+                console.log(err, 'err');
+            })
+        }
+    }, [userId])
+
+
+
+    const getInput = (e) => {
+        const fieldValue = e.target.value;
+        const fieldName = e.target.name;
+        setUserObject({ ...userObject, [fieldName]: fieldValue });
+    };
+
+    const getImageInput = (e) => {
+        const fileValue = e.target.files[0];
+        const fileName = e.target.name;
+        const imageUrl = URL.createObjectURL(fileValue);
+
+        setUserObject({
+            ...userObject,
+            [fileName]: fileValue,
+            localmage: imageUrl,
         })
     }
-}, [userId])
+
+
+    const formSubmit = (e) => {
+        e.preventDefault();
+        // console.log(adminModel, 'admin');
+        const formData = new FormData();
+        formData.set('avatar', userObject.avatar);
+        formData.set('fullname', userObject.fullname);
+        formData.set('email', userObject.email);
+        formData.set('phonenumber', userObject.phonenumber);
+        // formData.set('password', adminModel.password);
+        // formData.set('title', adminModel.title);
+        // formData.set('type', adminModel.type);
+        // formData.set('addHospital', adminModel.addHospital);
+        // formData.set('manageHospital', adminModel.manageHospital);
+        // formData.set('addAdmin', adminModel.addAdmin);
+        // formData.set('manageAdmin', adminModel.manageAdmin);
+        // formData.set('services', adminModel.services);
+        // formData.set('is_active', adminModel.is_active);
+
+        console.log(formData, 'formDataa');
+        patchAdmin(formData, userId).then((res) => {
+            console.log(res, 'formData Succ')
+        }).catch((err) => {
+            console.log(err, 'formData Succ')
+        })
+    }
 
     return (
         <React.Fragment>
@@ -34,15 +81,12 @@ useEffect(() => {
                         <div className="card cardForm">
                             <div className="card-body">
 
-                                <form className="additionForm" >
+                                <form className="additionForm" onSubmit={formSubmit}>
                                     <div className="row g-4">
                                         <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
                                             <div className="fields">
                                                 <div className="profileImage">
-                                                    <img
-                                                        src={userObject.avatar ? userObject.avatar : profilePic}
-                                                        alt=""
-                                                        className="profileImage" />
+                                                    <img src={userObject?.localmage || userObject?.avatar || profilePic} alt="" className="profileImage" />
                                                 </div>
                                             </div>
                                         </div>
@@ -51,31 +95,32 @@ useEffect(() => {
                                                 <label htmlFor="doctorImage">Image</label>
                                                 <input
                                                     type="file"
+                                                    onChange={getImageInput}
                                                     className="form-control"
                                                     id="doctorImage"
-                                                    name="image"
-                                                    required
+                                                    name="avatar"
+                                                    
                                                 />
                                             </div>
                                         </div>
                                         <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
                                             <div className="fields">
                                                 <label htmlFor="doctorName">Name</label>
-                                                <input type="text" id="doctorName" name="fullname" placeholder={userObject.fullname} required
+                                                <input type="text" onChange={getInput} id="doctorName" name="fullname" placeholder={userObject.fullname} 
                                                 />
                                             </div>
                                         </div>
                                         <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
                                             <div className="fields">
                                                 <label htmlFor="doctorName">Email</label>
-                                                <input type="email" id="doctorName" name="fullname" placeholder={userObject.email} required
+                                                <input type="email" onChange={getInput} id="doctorName" name="email" placeholder={userObject.email} 
                                                 />
                                             </div>
                                         </div>
                                         <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
                                             <div className="fields">
                                                 <label htmlFor="doctorName">Phone</label>
-                                                <input type="number" id="doctorName" name="fullname" placeholder={userObject.phonenumber} required
+                                                <input type="number" onChange={getInput} id="doctorName" name="phonenumber" placeholder={userObject.phonenumber} 
                                                 />
                                             </div>
                                         </div>

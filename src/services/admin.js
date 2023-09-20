@@ -20,6 +20,9 @@ export const AdminService = () => {
     const patchAdminToggle = (id) => {
         return axiosInstance.patch(`${baseUrl}/toggle-active-status/${id}`);
     };
+    const patchAdmin = (data, id) => {
+        return axiosInstance.patch(`${baseUrl}/admin-update/${id}`, data);
+    };
     // const getSingleAdmin = (id) => {
     //     return axiosInstance.get(`${baseUrl}/api-admin/management/single-admin/${id}`);
     // };
@@ -43,5 +46,5 @@ export const AdminService = () => {
 
   
 
-    return { getSingleAdmin, postAdmin, getAllAdmin, patchAdminToggle }
+    return { getSingleAdmin, postAdmin, getAllAdmin, patchAdminToggle, patchAdmin }
 }

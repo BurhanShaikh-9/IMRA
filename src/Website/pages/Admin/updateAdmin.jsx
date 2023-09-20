@@ -1,90 +1,72 @@
 import React from 'react'
 import profilePic from '../../../assets/images/guy.png'
 import { useState } from 'react'
-// import { Topics } from '../../../----services/topics'
 import { useParams } from "react-router";
 import { useEffect } from 'react';
-// import { AdminService } from '../../../----services/admin';
+import { AdminService } from '../../../services/admin';
 
 export const UpdateAdmin = () => {
-    // let { adminId } = useParams();
-    // const { getSingleAdmin, updateAdmin } = AdminService();
+    let { adminId } = useParams();
+    const { getSingleAdmin, patchAdmin } = AdminService();
 
     // // console.log(topicId, 'IDD ');
+    const [adminModel, setAdminModel] = useState({});
 
-    // useEffect(() => {
-    //     getSingleAdmin(adminId).then((res) => {
-    //         setAdminModel(res?.data?.admin)
-    //         console.log(res?.data, 'ress');
-    //     }).catch((res) => {
-    //         console.log(res, 'err');
-    //     })
-    // }, [adminId])
-
-
-
-
-    // // const { postTopics } = Topics();
-    // const [adminModel, setAdminModel] = useState({
-    //     image: null,
-    //     username: '',
-    //     email: '',
-    //     // password: '123',
-    //     phone: '',
-    //     title: '',
-    //     cnic: '',
-    //     registered_user: 0,
-    //     reported_user: 0,
-    //     topics: 0,
-    //     services: 0,
-    //     manage: 0,
-    //     add_admin: 0,
-
-    // });
-
-    // const getInput = (e) => {
-    //     const fieldValue = e.target.type === 'checkbox' ? (e.target.checked ? 1 : 0) : e.target.value;
-    //     const fieldName = e.target.name;
-    //     setAdminModel({ ...adminModel, [fieldName]: fieldValue });
-    // };
-
-    // const getImageInput = (e) => {
-    //     const fileValue = e.target.files[0];
-    //     const fileName = e.target.name;
-    //     const imageUrl = URL.createObjectURL(fileValue);
-
-    //     setAdminModel({
-    //         ...adminModel,
-    //         [fileName]: fileValue,
-    //         localmage: imageUrl,
-    //     })
-    // }
+    useEffect(() => {
+        getSingleAdmin(adminId).then((res) => {
+            setAdminModel(res?.data?.data)
+            console.log(res?.data?.data, 'ress');
+        }).catch((res) => {
+            console.log(res, 'err');
+        })
+    }, [adminId])
 
 
-    // const formSubmit = (e) => {
-    //     e.preventDefault();
-    //     const formData = new FormData();
-    //     formData.set('image', adminModel.image);
-    //     formData.set('username', adminModel.username);
-    //     formData.set('email', adminModel.email);
-    //     // formData.set('password', adminModel.password);
-    //     formData.set('phone', adminModel.phone);
-    //     formData.set('title', adminModel.title);
-    //     formData.set('cnic', adminModel.cnic);
-    //     formData.set('registered_user', adminModel.registered_user);
-    //     formData.set('reported_user', adminModel.reported_user);
-    //     formData.set('topics', adminModel.topics);
-    //     formData.set('services', adminModel.services);
-    //     formData.set('manage', adminModel.manage);
-    //     formData.set('add_admin', adminModel.add_admin);
 
-    //     console.log(formData, 'formDataa');
-    //     updateAdmin(formData, adminId).then((res) => {
-    //         console.log(res, 'formData Succ')
-    //     }).catch((err) => {
-    //         console.log(err, 'formData Succ')
-    //     })
-    // }
+    const getInput = (e) => {
+        const fieldValue = e.target.type === 'checkbox' ? (e.target.checked ? 1 : 0) : e.target.value;
+        const fieldName = e.target.name;
+        setAdminModel({ ...adminModel, [fieldName]: fieldValue });
+    };
+
+    const getImageInput = (e) => {
+        const fileValue = e.target.files[0];
+        const fileName = e.target.name;
+        const imageUrl = URL.createObjectURL(fileValue);
+
+        setAdminModel({
+            ...adminModel,
+            [fileName]: fileValue,
+            localmage: imageUrl,
+        })
+    }
+
+
+    const formSubmit = (e) => {
+        e.preventDefault();
+        // console.log(adminModel, 'admin');
+            const formData = new FormData();
+            formData.set('avatar', adminModel.avatar);
+            formData.set('fullname', adminModel.fullname);
+            formData.set('email', adminModel.email);
+            formData.set('phonenumber', adminModel.phonenumber);
+            // formData.set('password', adminModel.password);
+            formData.set('title', adminModel.title);
+            formData.set('type', adminModel.type);
+            formData.set('addHospital', adminModel.addHospital);
+            formData.set('manageHospital', adminModel.manageHospital);
+            formData.set('addAdmin', adminModel.addAdmin);
+            formData.set('manageAdmin', adminModel.manageAdmin);
+            formData.set('services', adminModel.services);
+            formData.set('is_active', adminModel.is_active);
+
+            console.log(formData, 'formDataa');
+        patchAdmin(formData, adminId).then((res) => {
+            console.log(res, 'formData Succ')
+        }).catch((err) => {
+            console.log(err, 'formData Succ')
+        })
+    }
 
 
     return (
@@ -100,13 +82,13 @@ export const UpdateAdmin = () => {
                             <div className="card-body">
 
                                 <form className="additionForm"
-                                // onSubmit={formSubmit}
+                                    onSubmit={formSubmit}
                                 >
                                     <div className="row g-4">
                                         <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
                                             <div className="fields">
                                                 <div className="profileImage">
-                                                    {/* <img src={adminModel?.localmage || adminModel?.image || profilePic} alt="" className="profileImage" /> */}
+                                                    <img src={adminModel?.localmage || adminModel?.avatar || profilePic} alt="" className="profileImage" />
                                                 </div>
                                             </div>
                                         </div>
@@ -117,8 +99,8 @@ export const UpdateAdmin = () => {
                                                     type="file"
                                                     className="form-control"
                                                     id="doctorImage"
-                                                    name="image"
-                                                // onChange={getImageInput}
+                                                    name="avatar"
+                                                    onChange={getImageInput}
 
                                                 />
                                             </div>
@@ -126,97 +108,105 @@ export const UpdateAdmin = () => {
                                         <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
                                             <div className="fields">
                                                 <label htmlFor="doctorName">Name</label>
-                                                <input type="text" id="doctorName" name="username" placeholder={adminModel?.username} 
-                                                // onChange={getInput}
+                                                <input type="text" id="doctorName" name="fullname" placeholder={adminModel?.fullname}
+                                                    onChange={getInput}
                                                 />
                                             </div>
                                         </div>
                                         <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
                                             <div className="fields">
                                                 <label htmlFor="doctorName">Title</label>
-                                                <input type="text" id="doctorName" name="title" placeholder={adminModel?.title} 
-                                                // onChange={getInput}
+                                                <input type="text" id="doctorName" name="title" placeholder={adminModel?.title}
+                                                    onChange={getInput}
                                                 />
                                             </div>
                                         </div>
                                         <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
                                             <div className="fields">
                                                 <label htmlFor="doctorName">Email</label>
-                                                <input type="email" id="doctorName" name="email" placeholder={adminModel?.email} 
-                                                // onChange={getInput}
+                                                <input type="email" id="doctorName" name="email" placeholder={adminModel?.email}
+                                                    onChange={getInput}
                                                 />
                                             </div>
                                         </div>
                                         <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
                                             <div className="fields">
                                                 <label htmlFor="doctorName">Phone</label>
-                                                <input type="number" id="doctorName" name="phone" placeholder={adminModel?.phone} 
-                                                // onChange={getInput}
+                                                <input type="number" id="doctorName" name="phonenumber" placeholder={adminModel?.phonenumber}
+                                                    onChange={getInput}
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
-                                            <div className="fields">
-                                                <label htmlFor="doctorName">CNIC</label>
-                                                <input type="text" id="doctorName" name="cnic" placeholder={adminModel?.cnic} 
-                                                // onChange={getInput}
-                                                />
+
+
+                                        <div className="row g-4">
+                                            <div className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 ">
+                                                <div className="fields">
+                                                    <label htmlFor="doctorName">Add Hospital</label>
+                                                    <label className="switch">
+                                                        <input type="checkbox" name='addHospital'
+                                                            checked={adminModel?.addHospital}
+                                                            onChange={getInput}
+                                                        />
+                                                        <span className="slider round"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 ">
+                                                <div className="fields">
+                                                    <label htmlFor="doctorName">Manage Hospial</label>
+                                                    <label className="switch">
+                                                        <input type="checkbox" name='manageHospital'
+                                                            onChange={getInput}
+                                                            checked={adminModel?.manageHospital}
+
+                                                        />
+                                                        <span className="slider round"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 ">
+                                                <div className="fields">
+                                                    <label htmlFor="doctorName">Add Admin</label>
+                                                    <label className="switch">
+                                                        <input type="checkbox" name='addAdmin'
+                                                            onChange={getInput}
+                                                            checked={adminModel?.addAdmin}
+
+                                                        />
+                                                        <span className="slider round"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 ">
+                                                <div className="fields">
+                                                    <label htmlFor="doctorName">Manage Admin</label>
+                                                    <label className="switch">
+                                                        <input type="checkbox" name='manageAdmin'
+                                                            onChange={getInput}
+                                                            checked={adminModel?.manageAdmin}
+
+                                                        />
+                                                        <span className="slider round"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 ">
+                                                <div className="fields">
+                                                    <label htmlFor="doctorName">Service</label>
+                                                    <label className="switch">
+                                                        <input type="checkbox" name='services'
+                                                            onChange={getInput}
+                                                            checked={adminModel?.services}
+
+                                                        />
+                                                        <span className="slider round"></span>
+                                                    </label>
+                                                </div>
                                             </div>
                                         </div>
-                                        {/* <div className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 ">
-                                            <div className="fields">
-                                                <label htmlFor="doctorName">Registered User</label>
-                                                <label className="switch">
-                                                    <input type="checkbox" name='registered_user' onChange={getInput} />
-                                                    <span className="slider round"></span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 ">
-                                            <div className="fields">
-                                                <label htmlFor="doctorName">Reported User</label>
-                                                <label className="switch">
-                                                    <input type="checkbox" name='reported_user' onChange={getInput} />
-                                                    <span className="slider round"></span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 ">
-                                            <div className="fields">
-                                                <label htmlFor="doctorName">Topics</label>
-                                                <label className="switch">
-                                                    <input type="checkbox" name='topics' onChange={getInput} />
-                                                    <span className="slider round"></span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 ">
-                                            <div className="fields">
-                                                <label htmlFor="doctorName">Services</label>
-                                                <label className="switch">
-                                                    <input type="checkbox" name='services' onChange={getInput} />
-                                                    <span className="slider round"></span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 ">
-                                            <div className="fields">
-                                                <label htmlFor="doctorName">Admin Management</label>
-                                                <label className="switch">
-                                                    <input type="checkbox" name='manage' onChange={getInput} />
-                                                    <span className="slider round"></span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 ">
-                                            <div className="fields">
-                                                <label htmlFor="doctorName">Add Admin</label>
-                                                <label className="switch">
-                                                    <input type="checkbox" name='add_admin' onChange={getInput} />
-                                                    <span className="slider round"></span>
-                                                </label>
-                                            </div>
-                                        </div> */}
+
+
 
 
                                         <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
