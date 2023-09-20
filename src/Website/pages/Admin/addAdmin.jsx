@@ -1,10 +1,64 @@
 import React, { useState, useEffect } from 'react'
 import profilePic from '../../../assets/images/guy.png'
+import { AdminService } from '../../../services/admin'
 // import { AdminService } from '../../../services/admin'
 
 export const AddAdmin = () => {
 
+    const{postAdmin} = AdminService();
 
+    const [adminData, setAdminData] = useState({
+        fullname: '',
+        email: '',
+        phonenumber: '',
+        password: '123',
+        avatar: '',
+        title: '',
+        type: 2,
+        addHospital: 0,
+        manageHospital: 0,
+        addAdmin: 0,
+        manageAdmin: 0,
+        services: 0,
+        is_active: true
+    })
+
+
+    const getInput = (e) => {
+        const fieldValue = e.target.type === 'checkbox' ? (e.target.checked ? 1 : 0) : e.target.value;
+        const fieldName = e.target.name;
+        setAdminData({ ...adminData, [fieldName]: fieldValue });
+    };
+    const getFileInput = (e) => {
+        const fieldName = e.target.name;
+        const fieldValue = e.target.files[0];
+        setAdminData({ ...adminData, [fieldName]: fieldValue })
+    }
+
+    const formSubmit = (e) => {
+        e.preventDefault();
+        // console.log(adminData, 'adminData');
+
+        const formData = new FormData();
+        formData.set('avatar', adminData.avatar);
+        formData.set('fullname', adminData.fullname);
+        formData.set('email', adminData.email);
+        formData.set('phonenumber', adminData.phonenumber);
+        formData.set('password', adminData.password);
+        formData.set('title', adminData.title);
+        formData.set('type', adminData.type);
+        formData.set('addHospital', adminData.addHospital);
+        formData.set('manageHospital', adminData.manageHospital);
+        formData.set('addAdmin', adminData.addAdmin);
+        formData.set('manageAdmin', adminData.manageAdmin);
+        formData.set('services', adminData.services);
+        formData.set('is_active', adminData.is_active);
+        postAdmin(formData).then((res)=>{
+            console.log(res, 'res');
+        }).catch((res)=>{
+            console.log(res,'err');
+        })
+    }
 
 
     return (
@@ -20,7 +74,7 @@ export const AddAdmin = () => {
                             <div className="card-body">
 
                                 <form className="additionForm"
-                                // onSubmit={formSubmit} 
+                                    onSubmit={formSubmit}
                                 >
                                     <div className="row g-4">
                                         <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
@@ -38,8 +92,8 @@ export const AddAdmin = () => {
                                                     type="file"
                                                     className="form-control"
                                                     id="doctorImage"
-                                                    name="image"
-                                                    // onChange={getImageInput}
+                                                    name="avatar"
+                                                    onChange={getFileInput}
                                                     required
                                                 />
                                             </div>
@@ -47,8 +101,8 @@ export const AddAdmin = () => {
                                         <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
                                             <div className="fields">
                                                 <label htmlFor="doctorName">Name</label>
-                                                <input type="text" id="doctorName" name="username" placeholder="Enter Name..."
-                                                // onChange={getInput} required
+                                                <input type="text" id="doctorName" name="fullname" placeholder="Enter Name..."
+                                                    onChange={getInput} required
                                                 />
                                             </div>
                                         </div>
@@ -56,7 +110,7 @@ export const AddAdmin = () => {
                                             <div className="fields">
                                                 <label htmlFor="doctorName">Title</label>
                                                 <input type="text" id="doctorName" name="title" placeholder="Enter Title..."
-                                                //  onChange={getInput} required
+                                                    onChange={getInput} required
                                                 />
                                             </div>
                                         </div>
@@ -64,15 +118,15 @@ export const AddAdmin = () => {
                                             <div className="fields">
                                                 <label htmlFor="doctorName">Email</label>
                                                 <input type="email" id="doctorName" name="email" placeholder="Enter Email..."
-                                                // onChange={getInput} required
+                                                    onChange={getInput} required
                                                 />
                                             </div>
                                         </div>
                                         <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
                                             <div className="fields">
                                                 <label htmlFor="doctorName">Phone</label>
-                                                <input type="number" id="doctorName" name="phone" placeholder="Enter Phone..."
-                                                // onChange={getInput} required
+                                                <input type="number" id="doctorName" name="phonenumber" placeholder="Enter Phone..."
+                                                    onChange={getInput} required
                                                 />
                                             </div>
                                         </div>
@@ -82,8 +136,8 @@ export const AddAdmin = () => {
                                                 <div className="fields">
                                                     <label htmlFor="doctorName">Add Hospital</label>
                                                     <label className="switch">
-                                                        <input type="checkbox" name='registered_user'
-                                                        // onChange={getInput}
+                                                        <input type="checkbox" name='addHospital'
+                                                            onChange={getInput}
                                                         />
                                                         <span className="slider round"></span>
                                                     </label>
@@ -93,8 +147,8 @@ export const AddAdmin = () => {
                                                 <div className="fields">
                                                     <label htmlFor="doctorName">Manage Hospial</label>
                                                     <label className="switch">
-                                                        <input type="checkbox" name='reported_user'
-                                                        //  onChange={getInput}
+                                                        <input type="checkbox" name='manageHospital'
+                                                            onChange={getInput}
                                                         />
                                                         <span className="slider round"></span>
                                                     </label>
@@ -104,8 +158,8 @@ export const AddAdmin = () => {
                                                 <div className="fields">
                                                     <label htmlFor="doctorName">Add Admin</label>
                                                     <label className="switch">
-                                                        <input type="checkbox" name='topics'
-                                                        //  onChange={getInput} 
+                                                        <input type="checkbox" name='addAdmin'
+                                                            onChange={getInput}
                                                         />
                                                         <span className="slider round"></span>
                                                     </label>
@@ -115,8 +169,8 @@ export const AddAdmin = () => {
                                                 <div className="fields">
                                                     <label htmlFor="doctorName">Manage Admin</label>
                                                     <label className="switch">
-                                                        <input type="checkbox" name='services'
-                                                        // onChange={getInput}
+                                                        <input type="checkbox" name='manageAdmin'
+                                                            onChange={getInput}
                                                         />
                                                         <span className="slider round"></span>
                                                     </label>
@@ -126,8 +180,8 @@ export const AddAdmin = () => {
                                                 <div className="fields">
                                                     <label htmlFor="doctorName">Service</label>
                                                     <label className="switch">
-                                                        <input type="checkbox" name='manage'
-                                                        // onChange={getInput}
+                                                        <input type="checkbox" name='services'
+                                                            onChange={getInput}
                                                         />
                                                         <span className="slider round"></span>
                                                     </label>

@@ -1,6 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import profilePic from '../../../assets/images/guy.png'
+import { AdminService } from '../../../services/admin'
+import TokenService from '../../../services/tokenService';
 export const Profile = () => {
+
+const {getSingleAdmin} = AdminService();
+const { getUserCookie } = TokenService();
+
+let userId = getUserCookie()
+const [userObject, setUserObject] = useState({});
+
+useEffect(() => {
+    if (userId) {
+        getSingleAdmin(userId).then((res) => {
+            const { addAdmin, addHospital, manageAdmin, manageHospital, services, ...filteredAdminData } = res?.data?.data;
+            setUserObject(filteredAdminData)
+            console.log(filteredAdminData, 'res');
+        }).catch((err) => {
+            console.log(err, 'err');
+        })
+    }
+}, [userId])
+
     return (
         <React.Fragment>
 
@@ -19,7 +40,7 @@ export const Profile = () => {
                                             <div className="fields">
                                                 <div className="profileImage">
                                                     <img
-                                                        src={profilePic}
+                                                        src={userObject.avatar ? userObject.avatar : profilePic}
                                                         alt=""
                                                         className="profileImage" />
                                                 </div>
@@ -40,31 +61,31 @@ export const Profile = () => {
                                         <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
                                             <div className="fields">
                                                 <label htmlFor="doctorName">Name</label>
-                                                <input type="text" id="doctorName" name="fullname" placeholder="Enter Name..." required
+                                                <input type="text" id="doctorName" name="fullname" placeholder={userObject.fullname} required
                                                 />
                                             </div>
                                         </div>
                                         <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
                                             <div className="fields">
                                                 <label htmlFor="doctorName">Email</label>
-                                                <input type="email" id="doctorName" name="fullname" placeholder="Enter Email..." required
+                                                <input type="email" id="doctorName" name="fullname" placeholder={userObject.email} required
                                                 />
                                             </div>
                                         </div>
                                         <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
                                             <div className="fields">
                                                 <label htmlFor="doctorName">Phone</label>
-                                                <input type="number" id="doctorName" name="fullname" placeholder="Enter Phone..." required
+                                                <input type="number" id="doctorName" name="fullname" placeholder={userObject.phonenumber} required
                                                 />
                                             </div>
                                         </div>
-                                        <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
+                                        {/* <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
                                             <div className="fields">
                                                 <label htmlFor="doctorName">CNIC</label>
                                                 <input type="text" id="doctorName" name="fullname" placeholder="Enter CNIC..." required
                                                 />
                                             </div>
-                                        </div>
+                                        </div> */}
 
 
                                         <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">

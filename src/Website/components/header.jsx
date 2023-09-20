@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import ProfileImg from '../../assets/images/guy.png'
 import { SidebarContext } from '../../App'
 import { Link, useNavigate } from 'react-router-dom'
@@ -7,21 +7,41 @@ import { RxHamburgerMenu } from 'react-icons/rx';
 import { GoBell } from 'react-icons/go';
 import { AiOutlineMail } from 'react-icons/ai';
 import { ROUTES } from '../../../utils/routes';
-// import AuthService from '../../----services/auth.service';
+import AuthService from '../../services/auth.service';
+import { AdminService } from '../../services/admin';
+import TokenService from '../../services/tokenService';
 
 
 export const Header = (props) => {
   const navigate = useNavigate();
+  const { sideBar, setSideBar } = useContext(SidebarContext)
+  const { userLogout } = AuthService();
 
-    const { sideBar, setSideBar } = useContext(SidebarContext)
-    // const {userLogout } = AuthService();
+  const { getSingleAdmin } = AdminService();
+  const { getUserCookie } = TokenService();
 
-    return (
-        <React.Fragment>
-            <header>
+  let userId = getUserCookie()
+  const [userObject, setUserObject] = useState({});
+
+  useEffect(() => {
+    if (userId) {
+      getSingleAdmin(userId).then((res) => {
+        const { addAdmin, addHospital, manageAdmin, manageHospital, services, email, phonenumber, ...filteredAdminData } = res?.data?.data;
+        setUserObject(filteredAdminData)
+        console.log(filteredAdminData, 'res');
+      }).catch((err) => {
+        console.log(err, 'err');
+      })
+    }
+  }, [userId])
+
+
+  return (
+    <React.Fragment>
+      <header>
         <div className="headerInner">
           <button className="menuButton" onClick={() => setSideBar(!sideBar)}>
-           <RxHamburgerMenu/>
+            <RxHamburgerMenu />
           </button>
           <div className="navRight">
             {/* <div className="dropdown notificationDropDown">
@@ -91,8 +111,8 @@ export const Header = (props) => {
             </div> */}
 
             <div className="aboutDoctor">
-              <p className="doctorName">Admin Name</p>
-              <p className="doctorSpeciality">Super Admin</p>
+              <p className="doctorName">{userObject.fullname}</p>
+              <p className="doctorSpeciality">{userObject.title}</p>
             </div>
             <div className="dropdown profileDropDown">
               <button
@@ -101,18 +121,18 @@ export const Header = (props) => {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                <img src={ProfileImg} alt="" />
+                <img src={userObject.avatar ? userObject.avatar : ProfileImg} alt="" />
                 <div className="notificationShow"></div>
               </button>
               <ul className="dropdown-menu">
                 <li>
-                  <button className="dropdown-item" onClick={()=>{navigate(ROUTES.PROFILE)}}>
+                  <button className="dropdown-item" onClick={() => { navigate(ROUTES.PROFILE) }}>
                     <i className="bi bi-person" />
                     Profile
                   </button>
                 </li>
                 <li >
-                  <button className="dropdown-item" href="#">
+                  <button className="dropdown-item" href="#" onClick={userLogout}>
                     <i className="bi bi-box-arrow-in-left" />
                     Logout
                   </button>
@@ -123,6 +143,6 @@ export const Header = (props) => {
         </div>
       </header>
 
-        </React.Fragment>
-    )
+    </React.Fragment>
+  )
 }

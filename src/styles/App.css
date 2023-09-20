@@ -949,7 +949,7 @@ table tbody tr td .actionButtons a svg:hover {
   height: 0;
 }
 .switch2 input:checked + .slider {
-  background-color: #171c63;
+  background-color: #32C6C3;
 }
 .switch2 input:focus + .slider {
   box-shadow: 0 0 1px #171c63;

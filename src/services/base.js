@@ -1,9 +1,9 @@
-// import React from 'react'
-// const Base = () => {
+import React from 'react'
+const Base = () => {
 
-//     const baseUrl = 'https://wewrangle.vercel.app';
+    const baseUrl = 'https://imra-backend.vercel.app';
 
-//   return {baseUrl}
-// }
+  return {baseUrl}
+}
 
-// export default Base;
+export default Base;

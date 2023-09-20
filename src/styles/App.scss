@@ -1109,7 +1109,7 @@ table {
     height: 0;
   }
   input:checked + .slider {
-    background-color: #171c63;
+    background-color: $base-color;
   }
 
   input:focus + .slider {
