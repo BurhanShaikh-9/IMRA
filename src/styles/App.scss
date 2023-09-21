@@ -944,6 +944,13 @@ header {
 
 .accordion {
   .accordion-header {
+    position: relative;
+    .accordionAbsoulteButton{
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 2;
+    }
     .accordion-button {
       background-color: $base-color;
       color: white;

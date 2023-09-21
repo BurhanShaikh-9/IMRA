@@ -22,14 +22,6 @@ export const AdminManagement = () => {
         })
     }, [data])
 
-    // const formDeletion = (userId) => {
-    //     getDeleteAdmin(userId).then((res) => {
-    //         console.log(res, 'response');
-    //     }).catch((err) => {
-    //         console.log(err, 'error');
-    //     })
-    // }
-
 
     // related to pagination and search of USER
     const [searchTerm, setSearchTerm] = useState('');

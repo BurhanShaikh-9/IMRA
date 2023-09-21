@@ -18,10 +18,12 @@ const AuthService = () => {
     };
 
     const successLogin = (response) => {
-        // console.log(response, 'res');
-        saveUserCookie(response.data?.id)
-        saveCookie(response.token)
-        navigate(ROUTES.DASHBOARD)
+        console.log(response.success, 'resqssssssssssssssssssss');
+        if(response.success == 1){
+            saveUserCookie(response.data?.id)
+            saveCookie(response.token)
+            navigate(ROUTES.DASHBOARD)
+        }
     };
 
 

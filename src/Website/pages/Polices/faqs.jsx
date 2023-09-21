@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { FiTrash } from 'react-icons/fi';
 
 export const Faqs = () => {
   const [addFaq, setAddFaq] = useState([]);
@@ -34,8 +35,12 @@ export const Faqs = () => {
               <div className="accordion" id="accordionExample">
                 <div className="accordion-item">
                   <h2 className="accordion-header" id="headingOne">
+                    <button className='accordionAbsoulteButton'>
+                      <FiTrash />
+                    </button>
                     <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                       Lorem ipsum dolor sit amet consectetur adipisicing.
+
                     </button>
                   </h2>
                   <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
@@ -108,7 +113,7 @@ export const Faqs = () => {
             </div>
           </div>
         </div>
-      </div>  
+      </div>
     </section>
   )
 }

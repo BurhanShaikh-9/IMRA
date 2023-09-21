@@ -20,16 +20,17 @@ export const Login = () => {
         setLogin({ ...login, [name]: value })
     }
 
-    const formSubmit = e =>{
+    const formSubmit = e => {
         e.preventDefault();
         const loginData = { ...login }
-        console.log(login, 'loged');
+
         postAdminLogin(loginData).then((res) => {
+
             successLogin(res?.data)
-            // console.log(res?.data?.data?.id);
-            // console.log(res?.data?.token);
+            // console.log(res?.data, 'weeeeeeeeeeeeeeeeeeeeeeeeee');
+
         }).catch((err) => {
-            console.log(err, 'error');
+            console.log(err, 'rrrrrrrrrrrrrrrrrrrr');
         })
 
     }

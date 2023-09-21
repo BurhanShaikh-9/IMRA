@@ -140,7 +140,7 @@ export const Dashboard = () => {
                       <div className="card-body">
                         <div className="chart">
                           <div className="chartHeading">
-                            <p>All Hospitals</p>
+                            <p>Total Hospitals</p>
                             <small>Current</small>
                           </div>
                           <div className="box box1">
@@ -174,7 +174,7 @@ export const Dashboard = () => {
                     </div>
                   </div>
 
-                  <div className="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-12 ">
+                  {/* <div className="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-12 ">
                     <div className="card">
                       <div className="card-body">
                         <div className="chart">
@@ -200,7 +200,7 @@ export const Dashboard = () => {
                       </div>
                       <ReactApexChart options={LineChart} series={LineChart.series} type="line" height={350} />
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
