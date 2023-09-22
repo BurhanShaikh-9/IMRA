@@ -83,22 +83,27 @@ export const Sidebar = () => {
                             </NavLink>
                         </li>
                         {userObject.addAdmin == 1 &&
-                        <li className="nav-item">
-                            <NavLink className="nav-link  collapsed" activeclassname="active" to={ROUTES.ADD_ADMIN}>
-                                <MdOutlineManageAccounts className='sideIcon' /><span>Add Admin </span>
-                            </NavLink>
-                        </li>
-}
-                        <li className="nav-item">
-                            <NavLink className="nav-link  collapsed" activeclassname="active" to={ROUTES.ADMIN_MANAGE}>
-                                <MdOutlineAdminPanelSettings className='sideIcon' /><span>Admin Management</span>
-                            </NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink className="nav-link  collapsed" activeclassname="active" to={ROUTES.SERVICES}>
-                                <FiSettings className='sideIcon' /><span>Services</span>
-                            </NavLink>
-                        </li>
+                            <li className="nav-item">
+                                <NavLink className="nav-link  collapsed" activeclassname="active" to={ROUTES.ADD_ADMIN}>
+                                    <MdOutlineManageAccounts className='sideIcon' /><span>Add Admin </span>
+                                </NavLink>
+                            </li>
+                        }
+                        {userObject.manageAdmin == 1 &&
+                            <li className="nav-item">
+                                <NavLink className="nav-link  collapsed" activeclassname="active" to={ROUTES.ADMIN_MANAGE}>
+                                    <MdOutlineAdminPanelSettings className='sideIcon' /><span>Admin Management</span>
+                                </NavLink>
+                            </li>
+                        }
+                        {userObject.services == 1 &&
+
+                            <li className="nav-item">
+                                <NavLink className="nav-link  collapsed" activeclassname="active" to={ROUTES.SERVICES}>
+                                    <FiSettings className='sideIcon' /><span>Services</span>
+                                </NavLink>
+                            </li>
+                        }
                         <li className="nav-item">
                             <NavLink className="nav-link  collapsed" activeclassname="active" to={ROUTES.PROFILE}>
                                 <AiOutlineUser className='sideIcon' /><span>Profile</span>

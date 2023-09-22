@@ -796,9 +796,15 @@ header .headerInner .menuButton svg {
 }
 .accordion .accordion-header .accordionAbsoulteButton {
   position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 2;
+  top: 20px;
+  right: 50px;
+  z-index: 40;
+  transform: translate(-50%, -50%);
+  background-color: transparent;
+  border: none;
+}
+.accordion .accordion-header .accordionAbsoulteButton svg {
+  font-size: 20px;
 }
 .accordion .accordion-header .accordion-button {
   background-color: #32C6C3;

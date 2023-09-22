@@ -33,59 +33,24 @@ export const Faqs = () => {
           <div className="card cardForm">
             <div className="card-body">
               <div className="accordion" id="accordionExample">
-                <div className="accordion-item">
-                  <h2 className="accordion-header" id="headingOne">
-                    <button className='accordionAbsoulteButton'>
-                      <FiTrash />
-                    </button>
-                    <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                      Lorem ipsum dolor sit amet consectetur adipisicing.
+                {[1, 2, 3, 4, 5].map((item, keyId) => (
+                  <div className="accordion-item" key={keyId}>
+                    <h2 className="accordion-header" id={`heading${keyId}`}>
+                      <button className='accordionAbsoulteButton'>
+                        <FiTrash />
+                      </button>
+                      <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target={`#collapse${keyId}`} aria-expanded="true" aria-controls={`collapse${keyId}`}>
+                        Lorem ipsum dolor sit amet consectetur adipisicing.
+                      </button>
+                    </h2>
+                    <div id={`collapse${keyId}`} className="accordion-collapse collapse " aria-labelledby={`heading${keyId}`} data-bs-parent="#accordionExample">
+                      <div className="accordion-body">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate iusto esse officia perferendis, autem odit?
+                      </div>
+                    </div>
+                  </div>
+                ))}
 
-                    </button>
-                  </h2>
-                  <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                    <div className="accordion-body">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate iusto esse officia perferendis, autem odit?
-                    </div>
-                  </div>
-                </div>
-                <div className="accordion-item">
-                  <h2 className="accordion-header" id="headingTwo">
-                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                      Lorem ipsum dolor sit amet consectetur adipisicing.
-                    </button>
-                  </h2>
-                  <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                    <div className="accordion-body">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt nemo quidem tempora, maiores suscipit mollitia, animi impedit natus eveniet commodi quo eos saepe excepturi autem fugit dolor unde beatae. Consequuntur!
-                    </div>
-                  </div>
-                </div>
-                <div className="accordion-item">
-                  <h2 className="accordion-header" id="headingThree">
-                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                      Lorem ipsum dolor sit amet consectetur adipisicing.
-                    </button>
-                  </h2>
-                  <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                    <div className="accordion-body">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt repellat rem voluptatem hic impedit inventore commodi molestiae accusamus error alias optio possimus nisi debitis itaque suscipit libero, atque cumque delectus rerum vitae doloribus! Quidem facere voluptates error perspiciatis eius incidunt.
-                    </div>
-                  </div>
-                </div>
-                <div className="accordion-item">
-                  <h2 className="accordion-header" id="headingThree">
-                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
-                      Lorem, ipsum dolor sit amet consectetur adipisicing.
-                    </button>
-                  </h2>
-                  <div id="collapseFour" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                    <div className="accordion-body">
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni provident laboriosam sapiente rerum omnis iure quae quo! Libero, provident asperiores.
-
-                    </div>
-                  </div>
-                </div>
                 {addFaq.map((item, keyid) => (
                   <div key={keyid} >
                     <div className="newSectionOutter">

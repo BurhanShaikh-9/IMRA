@@ -947,9 +947,15 @@ header {
     position: relative;
     .accordionAbsoulteButton{
       position: absolute;
-      top: 0;
-      right: 0;
-      z-index: 2;
+      top: 20px;
+      right: 50px;
+      z-index: 40;
+      transform: translate(-50%, -50%);
+      background-color: transparent;
+      border: none;
+      svg{
+        font-size: 20px;
+      }
     }
     .accordion-button {
       background-color: $base-color;

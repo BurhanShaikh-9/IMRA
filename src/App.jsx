@@ -16,11 +16,12 @@ function App() {
   const navigate = useNavigate(); // Initialize useNavigate
   const { getCookie } = TokenService();
   const userLogged = getCookie();
+  console.log(userLogged, 'logged');
 
   useEffect(() => {
     // Redirect to login if not authenticated
-    if (!userLogged) {
-      navigate(ROUTES.LOGIN); // Redirect to your login route
+    if (!userLogged || userLogged === undefined ) {
+      navigate(ROUTES.LOGIN); 
     }
   }, [userLogged, navigate]);
 

@@ -1,7 +1,44 @@
-import React,{useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import profilePic from '../../../assets/images/guy.png'
+import { HospitalService } from '../../../services/hospital';
 
 export const AddHospital = () => {
+    const { postAddHospital } = HospitalService();
+
+    const [hospitalData, setHospitalData] = useState({
+        fullname: '',
+        email: '',
+        phonenumber: '',
+        branch: '',
+        address: '',
+        avatar: '',
+    })
+
+    const onChangeHospital = (e) => {
+        setHospitalData({ ...hospitalData, [e.target.name]: e.target.value })
+    }
+    const onChangeImage = (e) => {
+        setHospitalData({ ...hospitalData, [e.target.name]: e.target.files[0] })
+    }
+
+    const onSubmit = (e) => {
+        e.preventDefault()
+        const formData = new FormData();
+        formData.set('avatar', hospitalData.avatar);
+        formData.set('fullname', hospitalData.fullname);
+        formData.set('email', hospitalData.email);
+        formData.set('phonenumber', hospitalData.phonenumber);
+        formData.set('branch', hospitalData.branch);
+        formData.set('address', hospitalData.address);
+
+        console.log(formData, 'hosss');
+
+        postAddHospital(formData).then((res) => {
+            console.log(res, 'response');
+        }).catch((res) => {
+            console.log(res, 'error');
+        })
+    }
 
     return (
         <React.Fragment>
@@ -15,14 +52,14 @@ export const AddHospital = () => {
                         <div className="card cardForm">
                             <div className="card-body">
 
-                                <form className="additionForm" 
-                
+                                <form className="additionForm"
+                                    onSubmit={onSubmit}
                                 >
                                     <div className="row g-4">
                                         <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
                                             <div className="fields">
                                                 <div className="profileImage">
-                                                    <img src={profilePic} alt="" />
+                                                    <img src={hospitalData.avatar ? URL.createObjectURL(hospitalData.avatar) : profilePic} alt="" />
                                                     {/* <img src={adminModel?.image ? URL.createObjectURL(adminModel.image) : profilePic} alt="" className="profileImage" /> */}
                                                 </div>
                                             </div>
@@ -33,9 +70,8 @@ export const AddHospital = () => {
                                                 <input
                                                     type="file"
                                                     className="form-control"
-                                                    id="doctorImage"
-                                                    name="image"
-                                         
+                                                    name="avatar"
+                                                    onChange={onChangeImage}
                                                     required
                                                 />
                                             </div>
@@ -43,40 +79,40 @@ export const AddHospital = () => {
                                         <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
                                             <div className="fields">
                                                 <label htmlFor="doctorName">Name</label>
-                                                <input type="text" id="doctorName" name="username" placeholder="Enter Name..." 
-                                               
+                                                <input type="text" id="doctorName" name="fullname" placeholder="Enter Name..."
+                                                    onChange={onChangeHospital}
                                                 />
                                             </div>
                                         </div>
                                         <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
                                             <div className="fields">
                                                 <label htmlFor="doctorName">Email</label>
-                                                <input type="email" id="doctorName" name="email" placeholder="Enter Email..." 
-
+                                                <input type="email" id="doctorName" name="email" placeholder="Enter Email..."
+                                                    onChange={onChangeHospital}
                                                 />
                                             </div>
                                         </div>
                                         <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
                                             <div className="fields">
                                                 <label htmlFor="doctorName">Phone</label>
-                                                <input type="number" id="doctorName" name="phone" placeholder="Enter Phone..." 
-
+                                                <input type="number" id="doctorName" name="phonenumber" placeholder="Enter Phone..."
+                                                    onChange={onChangeHospital}
                                                 />
                                             </div>
                                         </div>
                                         <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
                                             <div className="fields">
                                                 <label htmlFor="doctorName">Address</label>
-                                                <input type="text" id="doctorName" name="title" placeholder="Enter Address..."
-                                              
+                                                <input type="text" id="doctorName" name="address" placeholder="Enter Address..."
+                                                    onChange={onChangeHospital}
                                                 />
                                             </div>
                                         </div>
                                         <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
                                             <div className="fields">
                                                 <label htmlFor="doctorName">Branch</label>
-                                                <input type="text" id="doctorName" name="title" placeholder="Enter Branch..."
-                                              
+                                                <input type="text" id="doctorName" name="branch" placeholder="Enter Branch..."
+                                                    onChange={onChangeHospital}
                                                 />
                                             </div>
                                         </div>
