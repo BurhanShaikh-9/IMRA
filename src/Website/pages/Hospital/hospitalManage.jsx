@@ -89,8 +89,10 @@ export const HospitalManage = () => {
                                                         <td>
 
                                                             <div className="actionButtons">
-                                                                <Link>
+                                                                <Link to={`/${ROUTES.UPDATE_HOSPITAL}/${item._id}`}>
                                                                     <BiMessageSquareEdit />
+                                                                </Link>
+                                                                <Link>
                                                                     <FiTrash />
                                                                 </Link>
                                                             </div>
@@ -114,6 +116,10 @@ export const HospitalManage = () => {
                     </div>
                 </div>
             </section>
+
+            <dialog id='confirmationModal' className='modalMain' open>
+                hey
+            </dialog>
         </React.Fragment>
     )
 }

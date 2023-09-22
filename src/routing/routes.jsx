@@ -19,6 +19,7 @@ import { HospitalManage } from '../Website/pages/Hospital/hospitalManage'
 import { UserManage } from '../Website/pages/User/userManage'
 import TokenService from '../services/tokenService'
 import { AdminService } from '../services/admin'
+import { UpdateHospital } from '../Website/pages/Hospital/updateHospital'
 // import { Login } from '../Website/pages/registration/login'
 
 export const ExternalRoutes = () => {
@@ -42,14 +43,16 @@ export const ExternalRoutes = () => {
         <Routes>
             <Route element={<Layout />}>
                 <Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
-                <Route path={`${ROUTES.UPDATE_ADMIN}/:adminId`} element={<UpdateAdmin />} />
                 {
                     userObject.addHospital == 1 &&
                     <Route path={ROUTES.ADD_HOSPITAL} element={<AddHospital />} />
                 }
                 {
                     userObject.manageAdmin == 1 &&
-                    <Route path={ROUTES.ADMIN_MANAGE} element={<AdminManagement />} />
+                    <React.Fragment>
+                        <Route path={`${ROUTES.UPDATE_ADMIN}/:adminId`} element={<UpdateAdmin />} />
+                        <Route path={ROUTES.ADMIN_MANAGE} element={<AdminManagement />} />
+                    </React.Fragment>
                 }
                 {
                     userObject.addAdmin == 1 &&
@@ -57,7 +60,10 @@ export const ExternalRoutes = () => {
                 }
                 {
                     userObject.manageHospital == 1 &&
-                    <Route path={ROUTES.MANAGE_HOSPITAL} element={<HospitalManage />} />
+                    <React.Fragment>
+                        <Route path={ROUTES.MANAGE_HOSPITAL} element={<HospitalManage />} />
+                        <Route path={`${ROUTES.UPDATE_HOSPITAL}/:hospitalId`} element={<UpdateHospital />} />
+                    </React.Fragment>
                 }
                 {
                     userObject.services == 1 &&

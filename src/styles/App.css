@@ -1143,4 +1143,13 @@ body:has(.login) {
   border-radius: 7px;
   outline: none;
   padding: 10px;
+}
+
+.modalMain {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: none;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }/*# sourceMappingURL=App.css.map */

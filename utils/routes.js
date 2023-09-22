@@ -13,6 +13,7 @@ export const ROUTES = {
     ADMIN_MANAGE: "admin",
     ADD_ADMIN: "add-admin",
     ADD_HOSPITAL: 'add-hospital',
+    UPDATE_HOSPITAL: 'update-hospital',
     MANAGE_HOSPITAL: 'manage-hospital',
     MANAGE_USER: 'manage-user',
 }

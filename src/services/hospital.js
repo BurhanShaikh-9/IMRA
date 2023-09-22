@@ -15,6 +15,9 @@ export const HospitalService = () => {
     const getSingleHospital = (id) =>{
         return axiosInstance.get(`${baseUrl}/hospital/${id}`);
     }
+    const patchUpdateHospital = (id, data) =>{
+        return axiosInstance.patch(`${baseUrl}/update-hospital/${id}`, data);
+    }
 
-  return {postAddHospital, getAllHospital}
+  return {postAddHospital, getAllHospital, getSingleHospital, patchUpdateHospital}
 }

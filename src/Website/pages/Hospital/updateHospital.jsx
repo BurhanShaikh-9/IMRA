@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import profilePic from '../../../assets/images/guy.png'
 import { HospitalService } from '../../../services/hospital';
+import { useParams } from 'react-router-dom';
 
-export const AddHospital = () => {
-    const { postAddHospital } = HospitalService();
+export const UpdateHospital = () => {
+    const {hospitalId} = useParams();
+    const { patchUpdateHospital ,getSingleHospital } = HospitalService();
+    
 
-    const [hospitalData, setHospitalData] = useState({
-        fullname: '',
-        email: '',
-        phonenumber: '',
-        branch: '',
-        address: '',
-        avatar: '',
+    const [hospitalData, setHospitalData] = useState({})
+    const [localImage, setLocalImage] = useState({
+        avatar:''
     })
 
     const onChangeHospital = (e) => {
@@ -19,6 +18,7 @@ export const AddHospital = () => {
     }
     const onChangeImage = (e) => {
         setHospitalData({ ...hospitalData, [e.target.name]: e.target.files[0] })
+        setLocalImage({...localImage, [e.target.name]:e.target.files[0]})
     }
 
     const onSubmit = (e) => {
@@ -31,15 +31,24 @@ export const AddHospital = () => {
         formData.set('branch', hospitalData.branch);
         formData.set('address', hospitalData.address);
 
-        console.log(formData, 'hosss');
+        // console.log(formData, 'hosss');
 
-        postAddHospital(formData).then((res) => {
+        patchUpdateHospital(hospitalId, formData).then((res) => {
             console.log(res, 'response');
         }).catch((res) => {
             console.log(res, 'error');
         })
     }
 
+    useEffect(() => {
+        getSingleHospital(hospitalId).then((res)=>{
+            const {__v, _id, ...newgetData} = res?.data?.data
+            setHospitalData(newgetData)
+            // console.log(newgetData)
+        }).catch((res)=>{
+            console.log(res, 'error');
+        })
+    }, [])
     return (
         <React.Fragment>
 
@@ -59,7 +68,7 @@ export const AddHospital = () => {
                                         <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
                                             <div className="fields">
                                                 <div className="profileImage">
-                                                    <img src={hospitalData.avatar ? URL.createObjectURL(hospitalData.avatar) : profilePic} alt="" />
+                                                    <img src={localImage.avatar ? URL.createObjectURL(localImage.avatar) :(hospitalData.avatar ? hospitalData.avatar : profilePic)} alt="" />
                                                     {/* <img src={adminModel?.image ? URL.createObjectURL(adminModel.image) : profilePic} alt="" className="profileImage" /> */}
                                                 </div>
                                             </div>
@@ -72,51 +81,50 @@ export const AddHospital = () => {
                                                     className="form-control"
                                                     name="avatar"
                                                     onChange={onChangeImage}
-                                                    required
+                                                    
                                                 />
                                             </div>
                                         </div>
                                         <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
                                             <div className="fields">
                                                 <label htmlFor="doctorName">Name</label>
-                                                <input type="text" id="doctorName" name="fullname" placeholder="Enter Name..."
-                                                    onChange={onChangeHospital} required
+                                                <input type="text" id="doctorName" name="fullname" placeholder={hospitalData.fullname}
+                                                    onChange={onChangeHospital}
                                                 />
                                             </div>
                                         </div>
                                         <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
                                             <div className="fields">
                                                 <label htmlFor="doctorName">Email</label>
-                                                <input type="email" id="doctorName" name="email" placeholder="Enter Email..."
-                                                    onChange={onChangeHospital} required
+                                                <input type="email" id="doctorName" name="email" placeholder={hospitalData.email}
+                                                    onChange={onChangeHospital}
                                                 />
                                             </div>
                                         </div>
                                         <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
                                             <div className="fields">
                                                 <label htmlFor="doctorName">Phone</label>
-                                                <input type="number" id="doctorName" name="phonenumber" placeholder="Enter Phone..."
-                                                    onChange={onChangeHospital} required
+                                                <input type="number" id="doctorName" name="phonenumber" placeholder={hospitalData.phonenumber}
+                                                    onChange={onChangeHospital}
                                                 />
                                             </div>
                                         </div>
                                         <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
                                             <div className="fields">
                                                 <label htmlFor="doctorName">Address</label>
-                                                <input type="text" id="doctorName" name="address" placeholder="Enter Address..."
-                                                    onChange={onChangeHospital} required
+                                                <input type="text" id="doctorName" name="address" placeholder={hospitalData.address}
+                                                    onChange={onChangeHospital}
                                                 />
                                             </div>
                                         </div>
                                         <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
                                             <div className="fields">
                                                 <label htmlFor="doctorName">Branch</label>
-                                                <input type="text" id="doctorName" name="branch" placeholder="Enter Branch..."
-                                                    onChange={onChangeHospital} required
+                                                <input type="text" id="doctorName" name="branch" placeholder={hospitalData.branch}
+                                                    onChange={onChangeHospital}
                                                 />
                                             </div>
                                         </div>
-
 
                                         <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
                                             <div className="fields">
