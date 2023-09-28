@@ -71,25 +71,26 @@ export const UserManage = () => {
                                     <table className="table">
                                         <thead>
                                             <tr>
-                                                {/* <th scope="col">User Id</th> */}
+                                                <th scope="col">ID</th>
                                                 <th scope="col">User Name</th>
                                                 <th scope="col">Email</th>
-                                                <th scope="col">Phone</th>
                                                 <th scope="col">Country</th>
+                                                <th scope="col">Phone</th>
                                                 <th scope="col">Details</th>
-                                                <th scope="col">Actions</th>
+                                                {/* <th scope="col">Actions</th> */}
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {currentItems.map((item, keyId) => (
 
                                                 <tr key={keyId}>
+                                                    <td>{item._id}</td>
                                                     <td>{item.fullname}</td>
                                                     <td>{item.email}</td>
                                                     <td>{item.country}</td>
                                                     <td>{item.phonenumber}</td>
                                                     <td><Link>Details</Link></td>
-                                                    <td>
+                                                    {/* <td>
 
                                                         <div className="actionButtons">
                                                             <Link>
@@ -97,7 +98,7 @@ export const UserManage = () => {
                                                             </Link>
                                                         </div>
 
-                                                    </td>
+                                                    </td> */}
                                                 </tr>
                                             ))}
                                         </tbody>

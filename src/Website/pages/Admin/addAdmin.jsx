@@ -5,7 +5,7 @@ import { AdminService } from '../../../services/admin'
 
 export const AddAdmin = () => {
 
-    const{postAdmin} = AdminService();
+    const { postAdmin } = AdminService();
 
     const [adminData, setAdminData] = useState({
         fullname: '',
@@ -20,6 +20,8 @@ export const AddAdmin = () => {
         addAdmin: 0,
         manageAdmin: 0,
         services: 0,
+        manageUser: 0,
+        reception: 0,
         is_active: true
     })
 
@@ -37,7 +39,7 @@ export const AddAdmin = () => {
 
     const formSubmit = (e) => {
         e.preventDefault();
-        // console.log(adminData, 'adminData');
+        console.log(adminData, 'adminData');
 
         const formData = new FormData();
         formData.set('avatar', adminData.avatar);
@@ -52,11 +54,15 @@ export const AddAdmin = () => {
         formData.set('addAdmin', adminData.addAdmin);
         formData.set('manageAdmin', adminData.manageAdmin);
         formData.set('services', adminData.services);
+        formData.set('manageUser', adminData.manageUser);
+        formData.set('reception', adminData.reception);
         formData.set('is_active', adminData.is_active);
-        postAdmin(formData).then((res)=>{
+        console.log(formData, 'adminFormData');
+
+        postAdmin(formData).then((res) => {
             console.log(res, 'res');
-        }).catch((res)=>{
-            console.log(res,'err');
+        }).catch((res) => {
+            console.log(res, 'err');
         })
     }
 
@@ -181,6 +187,28 @@ export const AddAdmin = () => {
                                                     <label htmlFor="doctorName">Service</label>
                                                     <label className="switch">
                                                         <input type="checkbox" name='services'
+                                                            onChange={getInput}
+                                                        />
+                                                        <span className="slider round"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 ">
+                                                <div className="fields">
+                                                    <label htmlFor="doctorName">Reception</label>
+                                                    <label className="switch">
+                                                        <input type="checkbox" name='reception'
+                                                            onChange={getInput}
+                                                        />
+                                                        <span className="slider round"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 ">
+                                                <div className="fields">
+                                                    <label htmlFor="doctorName">Manage User</label>
+                                                    <label className="switch">
+                                                        <input type="checkbox" name='manageUser'
                                                             onChange={getInput}
                                                         />
                                                         <span className="slider round"></span>

@@ -45,22 +45,24 @@ export const UpdateAdmin = () => {
     const formSubmit = (e) => {
         e.preventDefault();
         // console.log(adminModel, 'admin');
-            const formData = new FormData();
-            formData.set('avatar', adminModel.avatar);
-            formData.set('fullname', adminModel.fullname);
-            formData.set('email', adminModel.email);
-            formData.set('phonenumber', adminModel.phonenumber);
-            // formData.set('password', adminModel.password);
-            formData.set('title', adminModel.title);
-            formData.set('type', adminModel.type);
-            formData.set('addHospital', adminModel.addHospital);
-            formData.set('manageHospital', adminModel.manageHospital);
-            formData.set('addAdmin', adminModel.addAdmin);
-            formData.set('manageAdmin', adminModel.manageAdmin);
-            formData.set('services', adminModel.services);
-            formData.set('is_active', adminModel.is_active);
+        const formData = new FormData();
+        formData.set('avatar', adminModel.avatar);
+        formData.set('fullname', adminModel.fullname);
+        formData.set('email', adminModel.email);
+        formData.set('phonenumber', adminModel.phonenumber);
+        // formData.set('password', adminModel.password);
+        formData.set('title', adminModel.title);
+        formData.set('type', adminModel.type);
+        formData.set('addHospital', adminModel.addHospital);
+        formData.set('manageHospital', adminModel.manageHospital);
+        formData.set('addAdmin', adminModel.addAdmin);
+        formData.set('manageAdmin', adminModel.manageAdmin);
+        formData.set('services', adminModel.services);
+        formData.set('manageUser', adminModel.manageUser);
+        formData.set('reception', adminModel.reception);
+        formData.set('is_active', adminModel.is_active);
 
-            console.log(formData, 'formDataa');
+        console.log(formData, 'formDataa');
         patchAdmin(formData, adminId).then((res) => {
             console.log(res, 'formData Succ')
         }).catch((err) => {
@@ -198,6 +200,32 @@ export const UpdateAdmin = () => {
                                                         <input type="checkbox" name='services'
                                                             onChange={getInput}
                                                             checked={adminModel?.services}
+
+                                                        />
+                                                        <span className="slider round"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 ">
+                                                <div className="fields">
+                                                    <label htmlFor="doctorName">Reception</label>
+                                                    <label className="switch">
+                                                        <input type="checkbox" name='reception'
+                                                            onChange={getInput}
+                                                            checked={adminModel?.reception}
+
+                                                        />
+                                                        <span className="slider round"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 ">
+                                                <div className="fields">
+                                                    <label htmlFor="doctorName">Manage User</label>
+                                                    <label className="switch">
+                                                        <input type="checkbox" name='manageUser'
+                                                            onChange={getInput}
+                                                            checked={adminModel?.manageUser}
 
                                                         />
                                                         <span className="slider round"></span>

@@ -333,6 +333,24 @@ header .headerInner .menuButton svg {
   padding: 5px 10px;
   border-radius: 25px;
 }
+.mainSection .mainSectionWrapper .cardForm .additionForm .fields .inputDivAbsolute {
+  position: relative;
+}
+.mainSection .mainSectionWrapper .cardForm .additionForm .fields .inputDivAbsolute input {
+  padding-right: 85px !important;
+}
+.mainSection .mainSectionWrapper .cardForm .additionForm .fields .inputDivAbsolute button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 7px 30px;
+  background-color: transparent;
+  color: #32C6C3;
+}
+.mainSection .mainSectionWrapper .cardForm .additionForm .fields .inputDivAbsolute button:hover {
+  color: white;
+  border-radius: 4px;
+}
 .mainSection .mainSectionWrapper .cardForm .additionForm .fields .profileImage {
   display: flex;
   justify-content: center;
@@ -1152,4 +1170,71 @@ body:has(.login) {
   transform: translate(-50%, -50%);
   border: none;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  min-width: 300px;
+}
+.modalMain .modalMainInner {
+  position: relative;
+  padding: 30px 20px 10px 20px;
+}
+.modalMain .modalMainInner h3 {
+  font-size: 23px;
+  font-weight: 600;
+}
+.modalMain .modalMainInner .modalMainCloseButton {
+  position: absolute;
+  border: none;
+  background-color: transparent;
+  top: 5px;
+  right: 20px;
+}
+.modalMain .modalMainInner .modalMainContent {
+  margin: 20px 0;
+  padding-left: 20px;
+}
+.modalMain .modalMainInner .modalGroupButtons {
+  display: flex;
+  gap: 20px;
+  justify-content: space-evenly;
+}
+.modalMain .modalMainInner .modalGroupButtons .modalGroupButtons1 {
+  transition: all 0.2s ease-in;
+  color: white;
+  background-color: #32C6C3;
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
+  padding: 10px 30px;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+  background-color: white;
+  color: #32C6C3;
+  border: 1px solid #32C6C3;
+}
+.modalMain .modalMainInner .modalGroupButtons .modalGroupButtons1:hover {
+  background-color: #32C6C3;
+}
+.modalMain .modalMainInner .modalGroupButtons .modalGroupButtons1:hover {
+  color: white;
+}
+.modalMain .modalMainInner .modalGroupButtons .modalGroupButtons2 {
+  transition: all 0.2s ease-in;
+  color: white;
+  background-color: #32C6C3;
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
+  padding: 10px 30px;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+  background-color: white;
+  color: #32C6C3;
+  border: 1px solid #32C6C3;
+}
+.modalMain .modalMainInner .modalGroupButtons .modalGroupButtons2:hover {
+  background-color: #32C6C3;
+}
+.modalMain .modalMainInner .modalGroupButtons .modalGroupButtons2:hover {
+  color: white;
 }/*# sourceMappingURL=App.css.map */

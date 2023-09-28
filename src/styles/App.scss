@@ -12,6 +12,7 @@ h6 {
   margin: 0;
   padding: 0;
 }
+
 a {
   text-decoration: none;
   color: black;
@@ -28,6 +29,7 @@ a {
   cursor: pointer;
   position: relative;
   outline: none;
+
   &:hover {
     background-color: $base-color;
   }
@@ -62,6 +64,7 @@ $base-color: #32C6C3;
     background-color: $base-color;
     color: white;
   }
+
   &:focus {
     background-color: $base-color;
     color: white;
@@ -74,12 +77,15 @@ $base-color: #32C6C3;
   padding: 8px 15px 12px 15px;
   font-size: 20px;
   margin: 0;
+
   &:hover {
     background-color: #df1b1b;
   }
+
   &:focus {
     background-color: #df1b1b;
   }
+
   &:first-child:active {
     background-color: #df1b1b;
   }
@@ -89,10 +95,11 @@ $base-color: #32C6C3;
   display: none;
 }
 
-.cardBodyRelative{
+.cardBodyRelative {
   position: relative;
 }
-.cardBodyAbsolute{
+
+.cardBodyAbsolute {
   position: absolute;
   top: 0;
   left: 0;
@@ -142,6 +149,7 @@ $base-color: #32C6C3;
   .LogoImage {
     padding-bottom: 20px;
   }
+
   .LogoImage img {
     width: 170px;
     background: $base-color;
@@ -324,9 +332,11 @@ header {
 
       .aboutDoctor {
         text-align: right;
+
         p {
           margin: 0;
         }
+
         .doctorName {
           color: $base-color;
           font-weight: 600;
@@ -343,6 +353,7 @@ header {
       color: $base-color;
       outline: none;
       border: none;
+
       svg {
         font-size: 30px;
       }
@@ -371,6 +382,7 @@ header {
 
     .cardForm {
       width: 90%;
+
       .tableSearch2 {
         display: flex;
         justify-content: space-between;
@@ -378,28 +390,33 @@ header {
         row-gap: 15px;
         flex-wrap: wrap;
         margin-bottom: 10px;
+
         .tableInnerHeading {
           font-size: 25px;
           color: $base-color;
           font-weight: 600;
         }
+
         input {
           border: 1px solid grey;
           padding: 5px;
           border-radius: 10px;
         }
       }
+
       .tableSearch {
         display: flex;
         justify-content: flex-end;
         align-items: center;
         margin-bottom: 10px;
+
         input {
           border: 1px solid grey;
           padding: 5px;
           border-radius: 10px;
         }
       }
+
       .additionForm {
         .addMoreButton {
           display: flex;
@@ -415,6 +432,24 @@ header {
         }
 
         .fields {
+          .inputDivAbsolute{
+            position: relative;
+            input{
+              padding-right: 85px !important;
+            }
+            button{
+              position: absolute;
+              top: 0;
+              right: 0;
+              padding: 7px 30px;
+              background-color: transparent;
+              color: #32C6C3;
+              &:hover{
+                color: white;
+                border-radius: 4px;
+              }
+            }
+          }
           .profileImage {
             display: flex;
             justify-content: center;
@@ -538,15 +573,15 @@ header {
               transition: 0.4s;
             }
 
-            input:checked + .slider {
+            input:checked+.slider {
               background-color: $base-color;
             }
 
-            input:focus + .slider {
+            input:focus+.slider {
               box-shadow: 0 0 1px $base-color;
             }
 
-            input:checked + .slider:before {
+            input:checked+.slider:before {
               -webkit-transform: translateX(28px);
               -ms-transform: translateX(28px);
               transform: translateX(28px);
@@ -570,6 +605,7 @@ header {
       td {
         white-space: nowrap;
       }
+
       td button {
         background-color: transparent;
         color: $base-color;
@@ -619,6 +655,7 @@ header {
             font-size: 20px;
           }
         }
+
         .chartHeading {
           p {
             font-size: 20px;
@@ -642,6 +679,7 @@ header {
               color: $base-color;
               font-weight: 600;
             }
+
             .category2 {
               color: $base-color;
               font-weight: 600;
@@ -649,6 +687,7 @@ header {
           }
         }
       }
+
       .doctorAppointments {
         display: flex;
         flex-direction: column;
@@ -660,12 +699,14 @@ header {
           align-items: center;
           width: 100%;
           margin-bottom: 10px;
+
           input {
             border: 1px solid grey;
             padding: 5px;
             border-radius: 10px;
           }
         }
+
         .tab {
           cursor: pointer;
           padding: 10px 20px;
@@ -711,6 +752,7 @@ header {
               margin-bottom: 20px;
               padding-bottom: 10px;
             }
+
             .metaDatasDivOuter .metaDatasDiv:last-child {
               border-bottom: none !important;
             }
@@ -770,6 +812,7 @@ header {
               }
             }
           }
+
           .panel {
             display: none;
             animation: fadein 0.8s;
@@ -796,6 +839,7 @@ header {
               border-bottom: 1px solid #b0b0b0;
               padding-bottom: 10px;
             }
+
             .metaDatasDivOuter .metaDatasDiv:last-child {
               border-bottom: none !important;
             }
@@ -873,25 +917,26 @@ header {
           display: none;
         }
 
-        #one:checked ~ .panels #one-panel,
-        #two:checked ~ .panels #two-panel,
-        #three:checked ~ .panels #three-panel,
-        #four:checked ~ .panels #four-panel,
-        #five:checked ~ .panels #five-panel {
+        #one:checked~.panels #one-panel,
+        #two:checked~.panels #two-panel,
+        #three:checked~.panels #three-panel,
+        #four:checked~.panels #four-panel,
+        #five:checked~.panels #five-panel {
           display: block;
         }
 
-        #one:checked ~ .tabs #one-tab,
-        #two:checked ~ .tabs #two-tab,
-        #three:checked ~ .tabs #three-tab,
-        #four:checked ~ .tabs #four-tab,
-        #five:checked ~ .tabs #five-tab {
+        #one:checked~.tabs #one-tab,
+        #two:checked~.tabs #two-tab,
+        #three:checked~.tabs #three-tab,
+        #four:checked~.tabs #four-tab,
+        #five:checked~.tabs #five-tab {
           background: #fffffff6;
           color: $base-color;
           border-top: 3px solid $base-color;
         }
       }
     }
+
     .page404 {
       img {
         width: 300px;
@@ -908,11 +953,13 @@ header {
       font-weight: 600;
       margin: 0;
     }
+
     .subHeading {
       color: grey;
       margin: 0 0 15px 0;
     }
   }
+
   .editorHeading2 {
     .mainHeading {
       padding-top: 40px;
@@ -921,21 +968,25 @@ header {
       font-weight: 600;
       margin: 0;
     }
+
     .subHeading {
       color: grey;
       margin: 0 0 15px 0;
     }
   }
+
   .aboutEditor {
     height: 200px;
     margin-bottom: 50px;
   }
+
   .editorButton {
     display: flex;
     width: 100%;
     justify-content: flex-end;
     align-items: center;
   }
+
   .editorButton button {
     margin-top: 15px;
     @include blueButton;
@@ -945,7 +996,8 @@ header {
 .accordion {
   .accordion-header {
     position: relative;
-    .accordionAbsoulteButton{
+
+    .accordionAbsoulteButton {
       position: absolute;
       top: 20px;
       right: 50px;
@@ -953,15 +1005,18 @@ header {
       transform: translate(-50%, -50%);
       background-color: transparent;
       border: none;
-      svg{
+
+      svg {
         font-size: 20px;
       }
     }
+
     .accordion-button {
       background-color: $base-color;
       color: white;
       box-shadow: none;
     }
+
     .collapsed {
       background-color: white;
       color: black;
@@ -969,6 +1024,7 @@ header {
     }
   }
 }
+
 .addSectionButton {
   display: flex;
   justify-content: flex-end;
@@ -977,19 +1033,24 @@ header {
   flex-wrap: wrap;
   align-items: center;
   width: 100%;
+
   button {
     @include blueButton();
   }
 }
+
 .newSectionOutter {
   margin-top: 20px;
+
   .newSectionContent {
     margin-bottom: 10px;
     width: 100%;
+
     p {
       margin: 0 0 5px 0;
       padding: 0;
     }
+
     input {
       border-radius: 50px;
       padding: 5px 10px;
@@ -1005,6 +1066,7 @@ header {
   align-items: center;
   gap: 5px;
   font-size: 20px;
+
   a {
     display: flex;
     color: black;
@@ -1015,6 +1077,7 @@ header {
 table {
   text-align: center;
 }
+
 table {
   tbody {
     tr {
@@ -1056,24 +1119,28 @@ table {
     }
   }
 }
+
 .switch {
   margin-top: 10px;
   position: relative;
   display: inline-block;
   width: 60px;
   height: 28px;
+
   input {
     opacity: 0;
     width: 0;
     height: 0;
   }
-  input:checked + .slider {
+
+  input:checked+.slider {
     background-color: #171c63;
   }
 
-  input:focus + .slider {
+  input:focus+.slider {
     box-shadow: 0 0 1px #171c63;
   }
+
   .slider {
     position: absolute;
     cursor: pointer;
@@ -1084,6 +1151,7 @@ table {
     background-color: #ccc;
     -webkit-transition: 0.4s;
     transition: 0.4s;
+
     &::before {
       position: absolute;
       content: "";
@@ -1096,7 +1164,8 @@ table {
       transition: 0.4s;
     }
   }
-  input:checked + .slider:before {
+
+  input:checked+.slider:before {
     -webkit-transform: translateX(30px);
     -ms-transform: translateX(30px);
     transform: translateX(30px);
@@ -1111,23 +1180,27 @@ table {
     border-radius: 50%;
   }
 }
+
 .switch2 {
   position: relative;
   display: inline-block;
   width: 50px;
   height: 23px;
+
   input {
     opacity: 0;
     width: 0;
     height: 0;
   }
-  input:checked + .slider {
+
+  input:checked+.slider {
     background-color: $base-color;
   }
 
-  input:focus + .slider {
+  input:focus+.slider {
     box-shadow: 0 0 1px #171c63;
   }
+
   .slider {
     position: absolute;
     cursor: pointer;
@@ -1138,6 +1211,7 @@ table {
     background-color: #ccc;
     -webkit-transition: 0.4s;
     transition: 0.4s;
+
     &::before {
       position: absolute;
       content: "";
@@ -1150,7 +1224,8 @@ table {
       transition: 0.4s;
     }
   }
-  input:checked + .slider:before {
+
+  input:checked+.slider:before {
     -webkit-transform: translateX(25px);
     -ms-transform: translateX(25px);
     transform: translateX(25px);
@@ -1165,6 +1240,7 @@ table {
     border-radius: 50%;
   }
 }
+
 .accordion .accordion-header .accordion-button {
   font-weight: 600;
 }
@@ -1203,11 +1279,11 @@ div:has(.loginLogo) {
   gap: 5px;
 }
 
-.loginCheckBox + a {
+.loginCheckBox+a {
   transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-.loginCheckBox + a:hover {
+.loginCheckBox+a:hover {
   color: #eb5757;
 }
 
@@ -1233,6 +1309,7 @@ body:has(.login) {
   .loginLogoOuter {
     display: flex;
     justify-content: center;
+
     .loginLogo {
       position: relative;
       z-index: 1;
@@ -1240,6 +1317,7 @@ body:has(.login) {
       top: -25px;
     }
   }
+
   .card {
     max-width: 500px;
     width: 100%;
@@ -1281,6 +1359,7 @@ body:has(.login) {
               font-weight: 600;
               transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
             }
+
             button:hover {
               opacity: 0.9;
             }
@@ -1307,11 +1386,63 @@ body:has(.login) {
   }
 }
 
-.modalMain{
+.modalMain {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   border: none;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  min-width: 300px;
+
+  .modalMainInner {
+    position: relative;
+    padding: 30px 20px 10px 20px;
+
+    h3{
+      font-size: 23px;
+      font-weight: 600;
+    }
+
+    .modalMainCloseButton {
+      position: absolute;
+      border: none;
+      background-color: transparent;
+      top: 5px;
+      right: 20px;
+    }
+
+    .modalMainContent {
+      margin: 20px 0;
+      padding-left: 20px;
+      // text-align: center;
+    }
+
+    .modalGroupButtons {
+      display: flex;
+      gap: 20px;
+      justify-content: space-evenly;
+
+      .modalGroupButtons1 {
+        @include blueButton();
+        background-color: white;
+        color: #32C6C3;
+        border: 1px solid #32C6C3;
+        &:hover {
+          color: white;
+        }
+      }
+
+      .modalGroupButtons2 {
+        @include blueButton();
+        background-color: white;
+        color: #32C6C3;
+        border: 1px solid #32C6C3;
+
+        &:hover {
+          color: white;
+        }
+      }
+    }
+  }
 }

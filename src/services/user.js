@@ -8,6 +8,9 @@ export const UserService = () => {
     const getAllUser = () => {
         return axiosInstance.get(`${baseUrl}/all-user`);
     };    
+    const getSingleUser = (id) => {
+        return axiosInstance.get(`${baseUrl}/single-user/${id}`);
+    };    
 
-    return { getAllUser}
+    return { getAllUser, getSingleUser}
 }

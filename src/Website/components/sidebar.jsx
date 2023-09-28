@@ -12,9 +12,10 @@ import { RiHospitalLine } from 'react-icons/ri'
 import { CgFileDocument } from 'react-icons/cg'
 import { MdOutlineAdminPanelSettings, MdOutlineManageAccounts } from 'react-icons/md'
 import { FiUsers } from 'react-icons/fi'
+import { FaUserNurse } from 'react-icons/fa'
 
 import { FiSettings } from 'react-icons/fi'
-import { Dropdown, DropdownButton } from 'react-bootstrap';
+// import { Dropdown, DropdownButton } from 'react-bootstrap';
 import { ROUTES } from '../../../utils/routes';
 import TokenService from '../../services/tokenService';
 import { AdminService } from '../../services/admin';
@@ -77,11 +78,21 @@ export const Sidebar = () => {
                                 </NavLink>
                             </li>
                         }
-                        <li className="nav-item">
-                            <NavLink className="nav-link  collapsed" activeclassname="active" to={ROUTES.MANAGE_USER}>
-                                <FiUsers className='sideIcon' /><span>Manage User </span>
-                            </NavLink>
-                        </li>
+                        {userObject.manageUser == 1 &&
+                            <li className="nav-item">
+                                <NavLink className="nav-link  collapsed" activeclassname="active" to={ROUTES.MANAGE_USER}>
+                                    <FiUsers className='sideIcon' /><span>Manage User </span>
+                                </NavLink>
+                            </li>
+                        }
+                        {
+                            userObject.reception == 1 &&
+                            <li className="nav-item">
+                                <NavLink className="nav-link  collapsed" activeclassname="active" to={ROUTES.RECEPTIONIST}>
+                                    <FaUserNurse className='sideIcon' /><span>Receptionist </span>
+                                </NavLink>
+                            </li>
+                        }
                         {userObject.addAdmin == 1 &&
                             <li className="nav-item">
                                 <NavLink className="nav-link  collapsed" activeclassname="active" to={ROUTES.ADD_ADMIN}>
@@ -96,14 +107,24 @@ export const Sidebar = () => {
                                 </NavLink>
                             </li>
                         }
-                        {userObject.services == 1 &&
+                        {/* {userObject.services == 1 &&
 
                             <li className="nav-item">
                                 <NavLink className="nav-link  collapsed" activeclassname="active" to={ROUTES.SERVICES}>
                                     <FiSettings className='sideIcon' /><span>Services</span>
                                 </NavLink>
                             </li>
-                        }
+                        } */}
+                        <li className="nav-item">
+                            <NavLink className="nav-link  collapsed" activeclassname="active" to={ROUTES.ADD_DOCTOR}>
+                                <AiOutlineUser className='sideIcon' /><span>Add Doctor</span>
+                            </NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink className="nav-link  collapsed" activeclassname="active" to={ROUTES.MANAGE_DOCTOR}>
+                                <AiOutlineUser className='sideIcon' /><span>Manage Doctor</span>
+                            </NavLink>
+                        </li>
                         <li className="nav-item">
                             <NavLink className="nav-link  collapsed" activeclassname="active" to={ROUTES.PROFILE}>
                                 <AiOutlineUser className='sideIcon' /><span>Profile</span>

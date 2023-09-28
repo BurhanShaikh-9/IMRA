@@ -20,6 +20,10 @@ import { UserManage } from '../Website/pages/User/userManage'
 import TokenService from '../services/tokenService'
 import { AdminService } from '../services/admin'
 import { UpdateHospital } from '../Website/pages/Hospital/updateHospital'
+import { Receptionist } from '../Website/pages/receptionist/receptionist'
+import { AddDoctor } from '../Website/pages/Doctor/addDoctor'
+import { DoctorManage } from '../Website/pages/Doctor/manageDoctor'
+import { UpdateDoctor } from '../Website/pages/Doctor/updateDoctor'
 // import { Login } from '../Website/pages/registration/login'
 
 export const ExternalRoutes = () => {
@@ -69,7 +73,17 @@ export const ExternalRoutes = () => {
                     userObject.services == 1 &&
                     <Route path={ROUTES.SERVICES} element={<Services />} />
                 }
-                <Route path={ROUTES.MANAGE_USER} element={<UserManage />} />
+                {
+                    userObject.reception == 1 &&
+                    <Route path={ROUTES.RECEPTIONIST} element={<Receptionist />} />
+                }
+                {
+                    userObject.manageUser == 1 &&
+                    <Route path={ROUTES.MANAGE_USER} element={<UserManage />} />
+                }
+                <Route path={ROUTES.ADD_DOCTOR} element={<AddDoctor />} />
+                <Route path={ROUTES.MANAGE_DOCTOR} element={<DoctorManage />} />
+                <Route path={`${ROUTES.UPDATE_DOCTOR}/:doctorId`} element={<UpdateDoctor />} />
                 <Route path={ROUTES.PROFILE} element={<Profile />} />
                 <Route path={ROUTES.FAQS} element={<Faqs />} />
             </Route>

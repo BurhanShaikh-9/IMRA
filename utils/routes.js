@@ -16,4 +16,8 @@ export const ROUTES = {
     UPDATE_HOSPITAL: 'update-hospital',
     MANAGE_HOSPITAL: 'manage-hospital',
     MANAGE_USER: 'manage-user',
+    RECEPTIONIST: 'receptionist',
+    ADD_DOCTOR: 'add-doctor',
+    MANAGE_DOCTOR: 'manage-doctor',
+    UPDATE_DOCTOR: 'update-doctor',
 }

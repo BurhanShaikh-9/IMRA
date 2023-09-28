@@ -8,19 +8,20 @@ import { Link } from 'react-router-dom';
 import { ROUTES } from '../../../../utils/routes';
 import { HospitalService } from '../../../services/hospital';
 import { RxCross2 } from 'react-icons/rx';
+import { DoctorService } from '../../../services/doctor';
 
-export const HospitalManage = () => {
-    const { getAllHospital, deleteSingleHospital } = HospitalService();
+export const DoctorManage = () => {
+    const { getAllDoctor, deleteSingleDoctor } = DoctorService();
 
     const [data, setData] = useState([])
     useEffect(() => {
-        getAllHospital().then((res) => {
+        getAllDoctor().then((res) => {
             setData(res?.data?.data)
-            console.log(res?.data?.data, 'responseee')
+            // console.log(res?.data?.data, 'responseee')
         }).catch((res) => {
             console.log(res, 'error');
         })
-    }, [data.length])
+    }, [data])
 
     const [searchTerm, setSearchTerm] = useState('');
     const [pageNumber, setPageNumber] = useState(0);
@@ -36,7 +37,7 @@ export const HospitalManage = () => {
         if (searchTerm === '') {
             return item;
         } else if (
-            item.fullname.toLowerCase().includes(searchTerm.toLowerCase())
+            item.name.toLowerCase().includes(searchTerm.toLowerCase())
         ) {
             return item;
         }
@@ -50,7 +51,7 @@ export const HospitalManage = () => {
     const [deleteHospitalId, setDeleteHospitalId] = useState('')
 
     const onDeleteHospital = () => {
-        deleteSingleHospital(deleteHospitalId).then((res) => {
+        deleteSingleDoctor(deleteHospitalId).then((res) => {
             console.log(res, 'response');
             setModalIsOpen(false);
         }).catch((res) => {
@@ -85,8 +86,10 @@ export const HospitalManage = () => {
                                                 {/* <th scope="col">User Id</th> */}
                                                 <th scope="col">Name</th>
                                                 <th scope="col">Email</th>
-                                                <th scope="col">Branch</th>
+                                                <th scope="col">Pdma ID</th>
                                                 <th scope="col">Phone</th>
+                                                <th scope="col">Experience</th>
+                                                <th scope="col">Qualification</th>
                                                 <th scope="col">Actions</th>
                                             </tr>
                                         </thead>
@@ -95,13 +98,15 @@ export const HospitalManage = () => {
                                             {currentItems.map((item, keyid) => {
                                                 return (
                                                     <tr key={keyid}>
-                                                        <td>{item?.fullname}</td>
+                                                        <td>{item?.name}</td>
                                                         <td>{item?.email}</td>
-                                                        <td>{item?.branch}</td>
+                                                        <td>{item?.pdmaid}</td>
                                                         <td>{item?.phonenumber}</td>
+                                                        <td>{item?.experience}</td>
+                                                        <td>{item?.qualification}</td>
                                                         <td>
                                                             <div className="actionButtons">
-                                                                <Link to={`/${ROUTES.UPDATE_HOSPITAL}/${item._id}`}>
+                                                                <Link to={`/${ROUTES.UPDATE_DOCTOR}/${item._id}`}>
                                                                     <BiMessageSquareEdit />
                                                                 </Link>
                                                                 <Link onClick={() => { setModalIsOpen(true); setDeleteHospitalId(item._id) }}>
