@@ -7,7 +7,7 @@ export const HospitalService = () => {
     const { baseUrl } = Base();
     const { axiosInstance } = AxiosSettings()
     const postAddHospital = (data) =>{
-        return axiosInstance.post(`${baseUrl}/create-superadmin`, data);
+        return axiosInstance.post(`${baseUrl}/create-hospital`, data);
     }
     const getAllHospital = () =>{
         return axiosInstance.get(`${baseUrl}/all-hospitals`);
