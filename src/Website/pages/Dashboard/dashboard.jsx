@@ -1,7 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
+import { DashboardService } from '../../../services/dashboard';
 
 export const Dashboard = () => {
+
+  const { getDashboardData } = DashboardService()
+  const [dashboardData, setDashboardData] = useState([]);
+
+  console.log(dashboardData, 'dashboard');
+  useEffect(() => {
+    getDashboardData().then((res) => {
+      setDashboardData(res.data.data)
+    }).catch((res) => {
+      console.log(res, 'error');
+    })
+  }, [])
 
   const Line1 = {
     chart: {
@@ -126,8 +139,8 @@ export const Dashboard = () => {
                           </div>
                           <div className="box box1">
                             <div className="details">
-                              <p className='category'>140</p>
-                              <p>Categories</p>
+                              <p className='category'>{dashboardData.adminCount}</p>
+                              <p>Users</p>
                             </div>
                             <ReactApexChart options={Line1} series={Line1.series} type="line" />
                           </div>
@@ -145,8 +158,8 @@ export const Dashboard = () => {
                           </div>
                           <div className="box box1">
                             <div className="details">
-                              <p className='category'>140</p>
-                              <p>Brands</p>
+                              <p className='category'>{dashboardData.hospitalCount}</p>
+                              <p>Hospitals</p>
                             </div>
                             <ReactApexChart options={Line1} series={Line1.series} type="line" />
                           </div>
@@ -164,8 +177,8 @@ export const Dashboard = () => {
                           </div>
                           <div className="box box1">
                             <div className="details">
-                              <p className='category'>140</p>
-                              <p>Labs</p>
+                              <p className='category'>{dashboardData.adminCount}</p>
+                              <p>Admins</p>
                             </div>
                             <ReactApexChart options={Line1} series={Line1.series} type="line" />
                           </div>

@@ -1273,12 +1273,14 @@ body:has(.login) {
   background-color: white;
   margin: 50px 0;
   justify-content: center;
+  height: 400px;
+  align-items: center;
 }
 .loadingComponent .loader {
   width: 40px;
   height: 40px;
   position: relative;
-  --c: no-repeat linear-gradient(#25b09b 0 0);
+  --c: no-repeat linear-gradient(#32C6C3 0 0);
   background: var(--c) center/100% 10px, var(--c) center/10px 100%;
 }
 .loadingComponent .loader:before {

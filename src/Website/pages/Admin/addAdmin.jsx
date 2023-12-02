@@ -10,7 +10,7 @@ import { toast } from 'react-toastify';
 export const AddAdmin = () => {
 
     const { postAdmin } = AdminService();
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     const [adminData, setAdminData] = useState({
         fullname: '',
@@ -97,7 +97,8 @@ export const AddAdmin = () => {
                                                 <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
                                                     <div className="fields">
                                                         <div className="profileImage">
-                                                            <img src={profilePic} alt="" />
+                                                            {/* <img src={profilePic} alt="" /> */}
+                                                            <img src={adminData.avatar ? URL.createObjectURL(adminData.avatar) : profilePic} alt="" />
                                                             {/* <img src={adminModel?.image ? URL.createObjectURL(adminModel.image) : profilePic} alt="" className="profileImage" /> */}
                                                         </div>
                                                     </div>
