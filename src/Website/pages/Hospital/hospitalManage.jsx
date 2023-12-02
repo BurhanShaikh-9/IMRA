@@ -14,13 +14,18 @@ export const HospitalManage = () => {
 
     const [data, setData] = useState([])
     useEffect(() => {
+        fetchData()
+  
+    }, [])
+
+    const fetchData = () =>{
         getAllHospital().then((res) => {
             setData(res?.data?.data)
             console.log(res?.data?.data, 'responseee')
         }).catch((res) => {
             console.log(res, 'error');
         })
-    }, [data.length])
+    }
 
     const [searchTerm, setSearchTerm] = useState('');
     const [pageNumber, setPageNumber] = useState(0);
@@ -53,6 +58,7 @@ export const HospitalManage = () => {
         deleteSingleHospital(deleteHospitalId).then((res) => {
             console.log(res, 'response');
             setModalIsOpen(false);
+            fetchData()
         }).catch((res) => {
             console.log(res, 'response');
         })

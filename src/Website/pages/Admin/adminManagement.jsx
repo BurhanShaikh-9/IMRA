@@ -12,15 +12,18 @@ export const AdminManagement = () => {
     const [data, setData] = useState([]);
     const navigate = useNavigate();
 
-    // // USER Data
+    // USER Data
     useEffect(() => {
+        fetchData()
+    }, [])
+    const fetchData = () => {
         getAllAdmin().then((res) => {
             setData(res?.data?.data)
             // console.log(res?.data?.data, 'resss');
         }).catch((err) => {
             console.log(err, "error")
         })
-    }, [data])
+    }
 
 
     // related to pagination and search of USER
@@ -52,6 +55,7 @@ export const AdminManagement = () => {
     const getInput = (id) => {
         patchAdminToggle(id).then((res) => {
             // console.log(res, 'res');
+            fetchData()
         }).catch(() => {
             // console.log(res, 'res');
         })

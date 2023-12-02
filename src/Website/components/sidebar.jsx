@@ -13,6 +13,7 @@ import { CgFileDocument } from 'react-icons/cg'
 import { MdOutlineAdminPanelSettings, MdOutlineManageAccounts } from 'react-icons/md'
 import { FiUsers } from 'react-icons/fi'
 import { FaUserNurse } from 'react-icons/fa'
+import { FaUserDoctor } from "react-icons/fa6";
 
 import { FiSettings } from 'react-icons/fi'
 // import { Dropdown, DropdownButton } from 'react-bootstrap';
@@ -37,6 +38,7 @@ export const Sidebar = () => {
         if (userId) {
             getSingleAdmin(userId).then((res) => {
                 setUserObject(res?.data?.data)
+                console.log(res?.data?.data, 'userrr');
             }).catch((err) => {
                 console.log(err, 'err');
             })
@@ -117,12 +119,12 @@ export const Sidebar = () => {
                         } */}
                         <li className="nav-item">
                             <NavLink className="nav-link  collapsed" activeclassname="active" to={ROUTES.ADD_DOCTOR}>
-                                <AiOutlineUser className='sideIcon' /><span>Add Doctor</span>
+                                <FaUserDoctor className='sideIcon' /><span>Add Doctor</span>
                             </NavLink>
                         </li>
                         <li className="nav-item">
                             <NavLink className="nav-link  collapsed" activeclassname="active" to={ROUTES.MANAGE_DOCTOR}>
-                                <AiOutlineUser className='sideIcon' /><span>Manage Doctor</span>
+                                <FaUserDoctor className='sideIcon' /><span>Manage Doctor</span>
                             </NavLink>
                         </li>
                         <li className="nav-item">

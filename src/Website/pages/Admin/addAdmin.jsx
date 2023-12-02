@@ -10,7 +10,7 @@ import { toast } from 'react-toastify';
 export const AddAdmin = () => {
 
     const { postAdmin } = AdminService();
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
     const [adminData, setAdminData] = useState({
         fullname: '',

@@ -14,13 +14,17 @@ export const UserManage = () => {
     const [data, setData] = useState([])
 
     useEffect(() => {
+        fetchData()
+    }, [])
+
+    const fetchData = () => {
         getAllUser().then((res) => {
             console.log(res?.data, 'response');
             setData(res?.data?.data)
         }).catch((res) => {
             console.log(res, 'error');
         })
-    }, [data.length])
+    }
 
 
     const [searchTerm, setSearchTerm] = useState('');
