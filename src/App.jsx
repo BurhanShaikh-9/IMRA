@@ -8,6 +8,7 @@ import { Route, Routes, useNavigate } from 'react-router-dom'; // Import useNavi
 import { ROUTES } from '../utils/routes';
 import { Login } from './Website/pages/registration/login';
 import TokenService from './services/tokenService';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const SidebarContext = createContext({ sideBar: false, setSideBar: () => { } })
 

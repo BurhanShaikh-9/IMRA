@@ -432,24 +432,28 @@ header {
         }
 
         .fields {
-          .inputDivAbsolute{
+          .inputDivAbsolute {
             position: relative;
-            input{
+
+            input {
               padding-right: 85px !important;
             }
-            button{
+
+            button {
               position: absolute;
               top: 0;
               right: 0;
               padding: 7px 30px;
               background-color: transparent;
               color: #32C6C3;
-              &:hover{
+
+              &:hover {
                 color: white;
                 border-radius: 4px;
               }
             }
           }
+
           .profileImage {
             display: flex;
             justify-content: center;
@@ -1399,7 +1403,7 @@ body:has(.login) {
     position: relative;
     padding: 30px 20px 10px 20px;
 
-    h3{
+    h3 {
       font-size: 23px;
       font-weight: 600;
     }
@@ -1428,6 +1432,7 @@ body:has(.login) {
         background-color: white;
         color: #32C6C3;
         border: 1px solid #32C6C3;
+
         &:hover {
           color: white;
         }
@@ -1443,6 +1448,85 @@ body:has(.login) {
           color: white;
         }
       }
+    }
+  }
+}
+
+
+.marginCardTop {
+  margin-top: 20px;
+}
+.marginCardHalfTop {
+  margin-top: 10px;
+}
+
+.marginHeadingTop {
+  margin-top: 40px;
+}
+
+.receptionistUserDetails {
+  .userImage {
+    border: 1px solid rgb(210, 210, 210);
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+    padding: 5px;
+    object-fit: contain;
+  }
+
+  .userTitle {
+    color: #32C6C3;
+  }
+
+  .userPersonalWrapper {
+    margin-top: 15px;
+  }
+}
+
+.loadingComponent {
+  width: 100%;
+  display: flex;
+  background-color: white;
+  margin: 50px 0;
+  justify-content: center;
+
+  .loader {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    --c: no-repeat linear-gradient(#25b09b 0 0);
+    background:
+      var(--c) center/100% 10px,
+      var(--c) center/10px 100%;
+  }
+
+  .loader:before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      var(--c) 0 0,
+      var(--c) 100% 0,
+      var(--c) 0 100%,
+      var(--c) 100% 100%;
+    background-size: 15.5px 15.5px;
+    animation: l16 1.5s infinite cubic-bezier(0.3, 1, 0, 1);
+  }
+
+  @keyframes l16 {
+    33% {
+      inset: -10px;
+      transform: rotate(0deg)
+    }
+
+    66% {
+      inset: -10px;
+      transform: rotate(90deg)
+    }
+
+    100% {
+      inset: 0;
+      transform: rotate(90deg)
     }
   }
 }

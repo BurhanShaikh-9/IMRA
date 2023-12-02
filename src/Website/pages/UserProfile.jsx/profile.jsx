@@ -2,10 +2,14 @@ import React, { useEffect, useState } from 'react'
 import profilePic from '../../../assets/images/guy.png'
 import { AdminService } from '../../../services/admin'
 import TokenService from '../../../services/tokenService';
+import { toast } from 'react-toastify';
+import Loader from '../../components/loader';
+
 export const Profile = () => {
 
     const { getSingleAdmin, patchAdmin } = AdminService();
     const { getUserCookie } = TokenService();
+    const [isLoading, setIsLoading] = useState(false);
 
     let userId = getUserCookie()
     const [userObject, setUserObject] = useState({});
@@ -45,6 +49,7 @@ export const Profile = () => {
 
     const formSubmit = (e) => {
         e.preventDefault();
+        setIsLoading(true)
         // console.log(adminModel, 'admin');
         const formData = new FormData();
         formData.set('avatar', userObject.avatar);
@@ -64,8 +69,12 @@ export const Profile = () => {
         console.log(formData, 'formDataa');
         patchAdmin(formData, userId).then((res) => {
             console.log(res, 'formData Succ')
+            toast.success('Profile Updated')
         }).catch((err) => {
+            toast.error('Profile Failed to Update')
             console.log(err, 'formData Succ')
+        }).finally(() => {
+            setIsLoading(false)
         })
     }
 
@@ -78,53 +87,58 @@ export const Profile = () => {
                         <div className="heading">
                             <p>PROFILE</p>
                         </div>
-                        <div className="card cardForm">
-                            <div className="card-body">
+                        {
+                            isLoading
+                                ?
+                                <Loader />
+                                :
+                                <div className="card cardForm">
+                                    <div className="card-body">
 
-                                <form className="additionForm" onSubmit={formSubmit}>
-                                    <div className="row g-4">
-                                        <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
-                                            <div className="fields">
-                                                <div className="profileImage">
-                                                    <img src={userObject?.localmage || userObject?.avatar || profilePic} alt="" className="profileImage" />
+                                        <form className="additionForm" onSubmit={formSubmit}>
+                                            <div className="row g-4">
+                                                <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
+                                                    <div className="fields">
+                                                        <div className="profileImage">
+                                                            <img src={userObject?.localmage || userObject?.avatar || profilePic} alt="" className="profileImage" />
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
-                                            <div className="fields">
-                                                <label htmlFor="doctorImage">Image</label>
-                                                <input
-                                                    type="file"
-                                                    onChange={getImageInput}
-                                                    className="form-control"
-                                                    id="doctorImage"
-                                                    name="avatar"
-                                                    
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
-                                            <div className="fields">
-                                                <label htmlFor="doctorName">Name</label>
-                                                <input type="text" onChange={getInput} id="doctorName" name="fullname" placeholder={userObject.fullname} 
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
-                                            <div className="fields">
-                                                <label htmlFor="doctorName">Email</label>
-                                                <input type="email" onChange={getInput} id="doctorName" name="email" placeholder={userObject.email} 
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
-                                            <div className="fields">
-                                                <label htmlFor="doctorName">Phone</label>
-                                                <input type="number" onChange={getInput} id="doctorName" name="phonenumber" placeholder={userObject.phonenumber} 
-                                                />
-                                            </div>
-                                        </div>
-                                        {/* <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
+                                                <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
+                                                    <div className="fields">
+                                                        <label htmlFor="doctorImage">Image</label>
+                                                        <input
+                                                            type="file"
+                                                            onChange={getImageInput}
+                                                            className="form-control"
+                                                            id="doctorImage"
+                                                            name="avatar"
+
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
+                                                    <div className="fields">
+                                                        <label htmlFor="doctorName">Name</label>
+                                                        <input type="text" onChange={getInput} id="doctorName" name="fullname" placeholder={userObject.fullname}
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
+                                                    <div className="fields">
+                                                        <label htmlFor="doctorName">Email</label>
+                                                        <input type="email" onChange={getInput} id="doctorName" name="email" placeholder={userObject.email}
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
+                                                    <div className="fields">
+                                                        <label htmlFor="doctorName">Phone</label>
+                                                        <input type="number" onChange={getInput} id="doctorName" name="phonenumber" placeholder={userObject.phonenumber}
+                                                        />
+                                                    </div>
+                                                </div>
+                                                {/* <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
                                             <div className="fields">
                                                 <label htmlFor="doctorName">CNIC</label>
                                                 <input type="text" id="doctorName" name="fullname" placeholder="Enter CNIC..." required
@@ -133,17 +147,19 @@ export const Profile = () => {
                                         </div> */}
 
 
-                                        <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
-                                            <div className="fields">
-                                                <button type="Submit" >
-                                                    Submit
-                                                </button>
+                                                <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
+                                                    <div className="fields">
+                                                        <button type="Submit" >
+                                                            Submit
+                                                        </button>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </form>
                                     </div>
-                                </form>
-                            </div>
-                        </div>
+                                </div>
+                        }
+
                     </div>
                 </div>
             </section>
