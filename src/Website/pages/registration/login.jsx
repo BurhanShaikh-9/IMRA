@@ -60,7 +60,7 @@ export const Login = () => {
                                         onChange={getInput}
                                     />
                                 </div>
-                                <div className="fields fields1">
+                                {/* <div className="fields fields1">
                                     <div className='loginCheckBox'>
                                         <input type="checkbox" id='rememberMe' />
                                         <label htmlFor='rememberMe'>Remember me</label>
@@ -68,7 +68,7 @@ export const Login = () => {
                                     <Link>
                                         Forgot Password?
                                     </Link>
-                                </div>
+                                </div> */}
                                 <div className="fields">
                                     {/* <button onClick={(e)=>{e.preventDefault(), getCookie()}}>cookie</button> */}
                                     <button  >
