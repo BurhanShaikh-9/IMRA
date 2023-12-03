@@ -38,7 +38,7 @@ export const Sidebar = () => {
         if (userId) {
             getSingleAdmin(userId).then((res) => {
                 setUserObject(res?.data?.data)
-                console.log(res?.data?.data, 'userrr');
+                // console.log(res?.data?.data, 'userrr');
             }).catch((err) => {
                 console.log(err, 'err');
             })

@@ -54,7 +54,6 @@ export const UpdateAdmin = () => {
         formData.set('fullname', adminModel.fullname);
         formData.set('email', adminModel.email);
         formData.set('phonenumber', adminModel.phonenumber);
-        // formData.set('password', adminModel.password);
         formData.set('title', adminModel.title);
         formData.set('type', adminModel.type);
         formData.set('addHospital', adminModel.addHospital);
@@ -71,7 +70,7 @@ export const UpdateAdmin = () => {
             // console.log(res, 'formData Succ')
             toast.success('Admin Updated')
         }).catch((err) => {
-            // console.log(err, 'formData Succ')
+            console.log(err, 'formData Succ')
             toast.error('Admin Failed to Update')
         }).finally(() => {
             setIsLoading(false)

@@ -28,7 +28,7 @@ export const Header = (props) => {
       getSingleAdmin(userId).then((res) => {
         const { addAdmin, addHospital, manageAdmin, manageHospital, services, email, phonenumber, ...filteredAdminData } = res?.data?.data;
         setUserObject(filteredAdminData)
-        console.log(filteredAdminData, 'res');
+        // console.log(filteredAdminData, 'res');
       }).catch((err) => {
         console.log(err, 'err');
       })
