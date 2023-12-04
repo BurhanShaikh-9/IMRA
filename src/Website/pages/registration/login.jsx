@@ -25,12 +25,9 @@ export const Login = () => {
         const loginData = { ...login }
 
         postAdminLogin(loginData).then((res) => {
-
             successLogin(res?.data)
-            // console.log(res?.data, 'weeeeeeeeeeeeeeeeeeeeeeeeee');
-
         }).catch((err) => {
-            console.log(err, 'rrrrrrrrrrrrrrrrrrrr');
+            console.log(err, 'error');
         })
 
     }

@@ -42,6 +42,11 @@ export const Faqs = () => {
   const getInput = (e) => {
     setFaqData({ ...faqData, [e.target.name]: e.target.value })
   }
+
+  // useEffect(() => {
+  //   console.log(faqData.faqquestion, '');
+  // }, [])
+
   const onFormSubmit = (e) => {
     setIsLoading(true)
     e.preventDefault()
