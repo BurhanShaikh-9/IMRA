@@ -67,10 +67,10 @@ export const Faqs = () => {
           <div className="card cardForm">
             <div className="card-body">
               {
-                isLoading 
-                ? 
-                <Loader /> 
-                :
+                isLoading
+                  ?
+                  <Loader />
+                  :
 
                   <div className="accordion" id="accordionExample">
 
@@ -109,7 +109,9 @@ export const Faqs = () => {
                       </form>
                     }
                     <div className="addSectionButton">
-                      <button form="formFaq" type='submit'>Submit</button>
+                      {showAddButton &&
+                        <button form="formFaq" type='submit'>Submit</button>
+                      }
                       <button onClick={() => { setShowAddButton(true) }}>Add Section</button>
                     </div>
                   </div>
