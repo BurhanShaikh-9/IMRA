@@ -85,7 +85,10 @@ export const ExternalRoutes = () => {
                 <Route path={ROUTES.MANAGE_DOCTOR} element={<DoctorManage />} />
                 <Route path={`${ROUTES.UPDATE_DOCTOR}/:doctorId`} element={<UpdateDoctor />} />
                 <Route path={ROUTES.PROFILE} element={<Profile />} />
-                <Route path={ROUTES.FAQS} element={<Faqs />} />
+                {
+                    userObject.services == 1 &&
+                    <Route path={ROUTES.FAQS} element={<Faqs />} />
+                }
             </Route>
 
 

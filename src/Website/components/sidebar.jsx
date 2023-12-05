@@ -14,9 +14,6 @@ import { MdOutlineAdminPanelSettings, MdOutlineManageAccounts } from 'react-icon
 import { FiUsers } from 'react-icons/fi'
 import { FaUserNurse } from 'react-icons/fa'
 import { FaUserDoctor } from "react-icons/fa6";
-
-import { FiSettings } from 'react-icons/fi'
-// import { Dropdown, DropdownButton } from 'react-bootstrap';
 import { ROUTES } from '../../../utils/routes';
 import TokenService from '../../services/tokenService';
 import { AdminService } from '../../services/admin';
@@ -132,11 +129,13 @@ export const Sidebar = () => {
                                 <AiOutlineUser className='sideIcon' /><span>Profile</span>
                             </NavLink>
                         </li>
-                        <li className="nav-item">
-                            <NavLink className="nav-link  collapsed" activeclassname="active" to={ROUTES.FAQS}>
-                                <CgFileDocument className='sideIcon' /> <span>Faqs</span>
-                            </NavLink>
-                        </li>
+                        {userObject.services == 1 &&
+                            <li className="nav-item">
+                                <NavLink className="nav-link  collapsed" activeclassname="active" to={ROUTES.FAQS}>
+                                    <CgFileDocument className='sideIcon' /> <span>Faqs</span>
+                                </NavLink>
+                            </li>
+                        }
 
                     </ul>
                 </div>
