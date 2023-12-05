@@ -100,11 +100,11 @@ export const Faqs = () => {
                         <div className="newSectionOutter">
                           <div className="newSectionContent">
                             <p>Add Question</p>
-                            <input type="text" name='faqquestion' onChange={getInput} />
+                            <input type="text" name='faqquestion' onChange={getInput} required />
                           </div>
                           <div className="newSectionContent">
                             <p>Add Answer</p>
-                            <input type="text" name='faqanswers' onChange={getInput} />
+                            <input type="text" name='faqanswers' onChange={getInput} required />
                           </div>
                         </div>
                       </form>
