@@ -34,7 +34,7 @@ export const Sidebar = () => {
     useEffect(() => {
         if (userId) {
             getSingleAdmin(userId).then((res) => {
-                setUserObject(res?.data?.data)
+                setUserObject(res?.data?.admin)
                 // console.log(res?.data?.data, 'userrr');
             }).catch((err) => {
                 console.log(err, 'err');

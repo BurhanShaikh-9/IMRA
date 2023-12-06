@@ -80,7 +80,7 @@ export const UserManage = () => {
                                                 <th scope="col">Email</th>
                                                 <th scope="col">Country</th>
                                                 <th scope="col">Phone</th>
-                                                <th scope="col">Details</th>
+                                                {/* <th scope="col">Details</th> */}
                                                 {/* <th scope="col">Actions</th> */}
                                             </tr>
                                         </thead>
@@ -93,7 +93,7 @@ export const UserManage = () => {
                                                     <td>{item.email}</td>
                                                     <td>{item.country}</td>
                                                     <td>{item.phonenumber}</td>
-                                                    <td><Link>Details</Link></td>
+                                                    {/* <td><Link>Details</Link></td> */}
                                                     {/* <td>
 
                                                         <div className="actionButtons">

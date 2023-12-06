@@ -37,7 +37,6 @@ export const UpdateHospital = () => {
         // console.log(formData, 'hosss');
 
         patchUpdateHospital(hospitalId, formData).then((res) => {
-            console.log(res, 'response');
             toast.success('Hospital Updated')
         }).catch((res) => {
             toast.error('Hospital Failed to Update')
@@ -49,9 +48,11 @@ export const UpdateHospital = () => {
 
     useEffect(() => {
         getSingleHospital(hospitalId).then((res) => {
-            const { __v, _id, ...newgetData } = res?.data?.data
+            console.log(res, 'response hospitall');
+            const { __v, _id, ...newgetData } = res?.data?.hospital
             setHospitalData(newgetData)
-            // console.log(newgetData)
+
+            // console.log(res)
         }).catch((res) => {
             console.log(res, 'error');
         })

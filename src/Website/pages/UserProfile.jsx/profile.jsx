@@ -17,7 +17,8 @@ export const Profile = () => {
     useEffect(() => {
         if (userId) {
             getSingleAdmin(userId).then((res) => {
-                const { addAdmin, addHospital, manageAdmin, manageHospital, services, ...filteredAdminData } = res?.data?.data;
+                console.log(res.data, 'adminss');
+                const { addAdmin, addHospital, manageAdmin, manageHospital, services, ...filteredAdminData } = res?.data?.admin;
                 setUserObject(filteredAdminData)
                 console.log(filteredAdminData, 'res');
             }).catch((err) => {

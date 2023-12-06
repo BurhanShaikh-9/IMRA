@@ -18,8 +18,8 @@ export const AdminManagement = () => {
     }, [])
     const fetchData = () => {
         getAllAdmin().then((res) => {
-            setData(res?.data?.data)
-            // console.log(res?.data?.data, 'resss');
+            console.log(res?.data?.admins, 'resss');
+            setData(res?.data?.admins)
         }).catch((err) => {
             console.log(err, "error")
         })

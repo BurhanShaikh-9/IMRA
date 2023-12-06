@@ -16,7 +16,7 @@ export const UpdateAdmin = () => {
 
     useEffect(() => {
         getSingleAdmin(adminId).then((res) => {
-            setAdminModel(res?.data?.data)
+            setAdminModel(res?.data?.admin)
             console.log(res?.data?.data, 'ress');
 
         }).catch((res) => {

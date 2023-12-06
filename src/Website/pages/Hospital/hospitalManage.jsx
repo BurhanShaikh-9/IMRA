@@ -20,8 +20,8 @@ export const HospitalManage = () => {
 
     const fetchData = () =>{
         getAllHospital().then((res) => {
-            setData(res?.data?.data)
-            console.log(res?.data?.data, 'responseee')
+            setData(res?.data?.hospitals)
+            console.log(res?.data?.hospitals, 'responseee')
         }).catch((res) => {
             console.log(res, 'error');
         })

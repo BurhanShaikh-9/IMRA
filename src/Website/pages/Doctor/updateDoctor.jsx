@@ -51,7 +51,7 @@ export const UpdateDoctor = () => {
 
     useEffect(() => {
         getSingleDoctor(doctorId).then((res) => {
-            const { __v, _id, ...newgetData } = res?.data?.data
+            const { __v, _id, ...newgetData } = res?.data?.doctor
             setHospitalData(newgetData)
             console.log(newgetData)
         }).catch((res) => {

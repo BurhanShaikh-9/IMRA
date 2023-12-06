@@ -36,7 +36,8 @@ export const ExternalRoutes = () => {
     useEffect(() => {
         if (userId) {
             getSingleAdmin(userId).then((res) => {
-                setUserObject(res?.data?.data)
+                console.log(res.data.data, 'response routeesss');
+                setUserObject(res?.data?.admin)
             }).catch((err) => {
                 console.log(err, 'err');
             })
@@ -46,49 +47,62 @@ export const ExternalRoutes = () => {
     return (
         <Routes>
             <Route element={<Layout />}>
-                <Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
                 {
-                    userObject.addHospital == 1 &&
+                    userObject?.dashboard == 1 &&
+                    <Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
+                }
+                {
+                    userObject?.addHospital == 1 &&
                     <Route path={ROUTES.ADD_HOSPITAL} element={<AddHospital />} />
                 }
                 {
-                    userObject.manageAdmin == 1 &&
+                    userObject?.manageAdmin == 1 &&
                     <React.Fragment>
                         <Route path={`${ROUTES.UPDATE_ADMIN}/:adminId`} element={<UpdateAdmin />} />
                         <Route path={ROUTES.ADMIN_MANAGE} element={<AdminManagement />} />
                     </React.Fragment>
                 }
                 {
-                    userObject.addAdmin == 1 &&
+                    userObject?.addAdmin == 1 &&
                     <Route path={ROUTES.ADD_ADMIN} element={<AddAdmin />} />
                 }
                 {
-                    userObject.manageHospital == 1 &&
+                    userObject?.manageHospital == 1 &&
                     <React.Fragment>
                         <Route path={ROUTES.MANAGE_HOSPITAL} element={<HospitalManage />} />
                         <Route path={`${ROUTES.UPDATE_HOSPITAL}/:hospitalId`} element={<UpdateHospital />} />
                     </React.Fragment>
                 }
                 {
-                    userObject.services == 1 &&
+                    userObject?.services == 1 &&
                     <Route path={ROUTES.SERVICES} element={<Services />} />
                 }
                 {
-                    userObject.reception == 1 &&
+                    userObject?.reception == 1 &&
                     <Route path={ROUTES.RECEPTIONIST} element={<Receptionist />} />
                 }
                 {
-                    userObject.manageUser == 1 &&
+                    userObject?.manageUser == 1 &&
                     <Route path={ROUTES.MANAGE_USER} element={<UserManage />} />
                 }
-                <Route path={ROUTES.ADD_DOCTOR} element={<AddDoctor />} />
-                <Route path={ROUTES.MANAGE_DOCTOR} element={<DoctorManage />} />
-                <Route path={`${ROUTES.UPDATE_DOCTOR}/:doctorId`} element={<UpdateDoctor />} />
-                <Route path={ROUTES.PROFILE} element={<Profile />} />
                 {
-                    userObject.services == 1 &&
+                    userObject?.add_doctor == 1 &&
+                    <Route path={ROUTES.ADD_DOCTOR} element={<AddDoctor />} />
+                }
+                {
+                    userObject?.manage_doctor == 1 &&
+                    <React.Fragment>
+                        <Route path={ROUTES.MANAGE_DOCTOR} element={<DoctorManage />} />
+                        <Route path={`${ROUTES.UPDATE_DOCTOR}/:doctorId`} element={<UpdateDoctor />} />
+                    </React.Fragment>
+
+                }
+                {
+                    userObject?.services == 1 &&
                     <Route path={ROUTES.FAQS} element={<Faqs />} />
                 }
+
+                <Route path={ROUTES.PROFILE} element={<Profile />} />
             </Route>
 
 

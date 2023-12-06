@@ -19,8 +19,8 @@ export const DoctorManage = () => {
     }, [])
     const fetchData = () => {
         getAllDoctor().then((res) => {
-            setData(res?.data?.data)
-            // console.log(res?.data?.data, 'responseee')
+            // console.log(res?.data, 'responseee')
+            setData(res?.data?.doctors)
         }).catch((res) => {
             console.log(res, 'error');
         })
@@ -70,7 +70,7 @@ export const DoctorManage = () => {
                     <div className="mainSectionWrapper">
                         <div className="heading">
                             <p>
-                                MANAGE HOSPITAL
+                                MANAGE DOCTOR
                             </p>
                         </div>
                         <div className="card cardForm">
