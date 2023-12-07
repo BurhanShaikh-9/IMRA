@@ -64,7 +64,7 @@ export const UpdateHospital = () => {
                 <div className="container">
                     <div className="mainSectionWrapper">
                         <div className="heading">
-                            <p>ADD HOSPITAL</p>
+                            <p>UPDATE HOSPITAL</p>
                         </div>
                         <div className="card cardForm">
                             <div className="card-body">

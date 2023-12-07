@@ -27,6 +27,9 @@ export const AddAdmin = () => {
         services: 0,
         manageUser: 0,
         reception: 0,
+        add_doctor: 0,
+        manage_doctor: 0,
+        dashboard: 0,
         is_active: true
     })
 
@@ -61,6 +64,9 @@ export const AddAdmin = () => {
         formData.set('services', adminData.services);
         formData.set('manageUser', adminData.manageUser);
         formData.set('reception', adminData.reception);
+        formData.set('add_doctor', adminData.add_doctor);
+        formData.set('manage_doctor', adminData.manage_doctor);
+        formData.set('dashboard', adminData.dashboard);
         formData.set('is_active', adminData.is_active);
         console.log(formData, 'adminFormData');
 
@@ -150,6 +156,19 @@ export const AddAdmin = () => {
                                                 </div>
 
                                                 <div className="row g-4">
+
+                                                    <div className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 ">
+                                                        <div className="fields">
+                                                            <label htmlFor="doctorName">Dashboard</label>
+                                                            <label className="switch">
+                                                                <input type="checkbox" name='dashboard'
+                                                                    onChange={getInput}
+                                                                />
+                                                                <span className="slider round"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
                                                     <div className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 ">
                                                         <div className="fields">
                                                             <label htmlFor="doctorName">Add Hospital</label>
@@ -227,6 +246,34 @@ export const AddAdmin = () => {
                                                             </label>
                                                         </div>
                                                     </div>
+
+
+                                                    <div className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 ">
+                                                        <div className="fields">
+                                                            <label htmlFor="doctorName">Add Doctor</label>
+                                                            <label className="switch">
+                                                                <input type="checkbox" name='add_doctor'
+                                                                    onChange={getInput}
+                                                                />
+                                                                <span className="slider round"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 ">
+                                                        <div className="fields">
+                                                            <label htmlFor="doctorName">Manage Doctor</label>
+                                                            <label className="switch">
+                                                                <input type="checkbox" name='manage_doctor'
+                                                                    onChange={getInput}
+                                                                />
+                                                                <span className="slider round"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+
+
                                                 </div>
 
                                                 <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
@@ -246,6 +293,6 @@ export const AddAdmin = () => {
                 </div>
             </section>
 
-        </React.Fragment>
+        </React.Fragment >
     )
 }

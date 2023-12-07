@@ -26,7 +26,8 @@ export const Header = (props) => {
   useEffect(() => {
     if (userId) {
       getSingleAdmin(userId).then((res) => {
-        const { addAdmin, addHospital, manageAdmin, manageHospital, services, email, phonenumber, ...filteredAdminData } = res?.data?.data;
+        console.log(userId, 'userrr');
+        const { addAdmin, addHospital, manageAdmin, manageHospital, services, email, phonenumber, ...filteredAdminData } = res?.data?.admin;
         setUserObject(filteredAdminData)
         // console.log(filteredAdminData, 'res');
       }).catch((err) => {

@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { AdminService } from '../../../services/admin';
 import { toast } from 'react-toastify';
 import Loader from '../../components/loader';
+import { AdminManagement } from './adminManagement';
 
 
 export const UpdateAdmin = () => {
@@ -13,6 +14,10 @@ export const UpdateAdmin = () => {
     const { getSingleAdmin, patchAdmin } = AdminService();
     const [isLoading, setIsLoading] = useState(false);
     const [adminModel, setAdminModel] = useState({});
+
+    useEffect(()=>{
+        console.log(adminModel,'adminModall');
+    },[adminModel.manage_doctor])
 
     useEffect(() => {
         getSingleAdmin(adminId).then((res) => {
@@ -22,7 +27,7 @@ export const UpdateAdmin = () => {
         }).catch((res) => {
             console.log(res, 'err');
         })
-    }, [adminId])
+    }, [])
 
 
 
@@ -47,8 +52,6 @@ export const UpdateAdmin = () => {
 
     const formSubmit = (e) => {
         e.preventDefault();
-        // console.log(adminModel, 'admin');
-        setIsLoading(true);
         const formData = new FormData();
         formData.set('avatar', adminModel.avatar);
         formData.set('fullname', adminModel.fullname);
@@ -63,11 +66,17 @@ export const UpdateAdmin = () => {
         formData.set('services', adminModel.services);
         formData.set('manageUser', adminModel.manageUser);
         formData.set('reception', adminModel.reception);
+        formData.set('add_doctor', adminModel.add_doctor);
+        formData.set('manage_doctor', adminModel.manage_doctor);
+        formData.set('dashboard', adminModel.dashboard);
         formData.set('is_active', adminModel.is_active);
+
+
+        setIsLoading(true);
 
         console.log(formData, 'formDataa');
         patchAdmin(formData, adminId).then((res) => {
-            // console.log(res, 'formData Succ')
+            console.log(res, 'formData Succ')
             toast.success('Admin Updated')
         }).catch((err) => {
             console.log(err, 'formData Succ')
@@ -154,6 +163,18 @@ export const UpdateAdmin = () => {
                                                 <div className="row g-4">
                                                     <div className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 ">
                                                         <div className="fields">
+                                                            <label htmlFor="doctorName">Dashboard</label>
+                                                            <label className="switch">
+                                                                <input type="checkbox" name='dashboard'
+                                                                    checked={adminModel?.dashboard}
+                                                                    onChange={getInput}
+                                                                />
+                                                                <span className="slider round"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 ">
+                                                        <div className="fields">
                                                             <label htmlFor="doctorName">Add Hospital</label>
                                                             <label className="switch">
                                                                 <input type="checkbox" name='addHospital'
@@ -236,6 +257,32 @@ export const UpdateAdmin = () => {
                                                                 <input type="checkbox" name='manageUser'
                                                                     onChange={getInput}
                                                                     checked={adminModel?.manageUser}
+
+                                                                />
+                                                                <span className="slider round"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 ">
+                                                        <div className="fields">
+                                                            <label htmlFor="doctorName">Add Doctor</label>
+                                                            <label className="switch">
+                                                                <input type="checkbox" name='add_doctor'
+                                                                    onChange={getInput}
+                                                                    checked={adminModel?.add_doctor}
+
+                                                                />
+                                                                <span className="slider round"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 ">
+                                                        <div className="fields">
+                                                            <label htmlFor="doctorName">Manage Doctor</label>
+                                                            <label className="switch">
+                                                                <input type="checkbox" name='manage_doctor'
+                                                                    onChange={getInput}
+                                                                    checked={adminModel?.manage_doctor}
 
                                                                 />
                                                                 <span className="slider round"></span>

@@ -76,9 +76,6 @@ export const DoctorManage = () => {
                         <div className="card cardForm">
                             <div className="card-body">
                                 <div className="tableSearch">
-                                    {/* <div className="tableInnerHeading">
-                            Physical Doctor
-                        </div> */}
                                     <input type="text" placeholder="Search..."
                                         onChange={handleSearch}
                                     />

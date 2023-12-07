@@ -114,16 +114,21 @@ export const Sidebar = () => {
                                 </NavLink>
                             </li>
                         } */}
-                        <li className="nav-item">
-                            <NavLink className="nav-link  collapsed" activeclassname="active" to={ROUTES.ADD_DOCTOR}>
-                                <FaUserDoctor className='sideIcon' /><span>Add Doctor</span>
-                            </NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink className="nav-link  collapsed" activeclassname="active" to={ROUTES.MANAGE_DOCTOR}>
-                                <FaUserDoctor className='sideIcon' /><span>Manage Doctor</span>
-                            </NavLink>
-                        </li>
+                        {userObject.add_doctor == 1 &&
+                            <li className="nav-item">
+                                <NavLink className="nav-link  collapsed" activeclassname="active" to={ROUTES.ADD_DOCTOR}>
+                                    <FaUserDoctor className='sideIcon' /><span>Add Doctor</span>
+                                </NavLink>
+                            </li>
+                        }
+                        {
+                            userObject.manage_doctor == 1 &&
+                            <li className="nav-item">
+                                <NavLink className="nav-link  collapsed" activeclassname="active" to={ROUTES.MANAGE_DOCTOR}>
+                                    <FaUserDoctor className='sideIcon' /><span>Manage Doctor</span>
+                                </NavLink>
+                            </li>
+                        }
                         <li className="nav-item">
                             <NavLink className="nav-link  collapsed" activeclassname="active" to={ROUTES.PROFILE}>
                                 <AiOutlineUser className='sideIcon' /><span>Profile</span>

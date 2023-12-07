@@ -4,9 +4,10 @@ import Cookies from 'js-cookie';
 
 const TokenService = () => {
 
-  // const userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGM4YmU1MWI2YjE2NDZhZjNjNWQ3ZDYiLCJyb2xlIjoiU3VwZXJBZG1pbiIsImlhdCI6MTY5MTQ4MzUyNiwiZXhwIjoxNjkxNTY5OTI2fQ.In5H8PNKRdXYlbummcZ5rh6FAKTi3P8ro95LHc4mW4A'
+  const oneDayInMilliseconds = 24 * 60 * 60 * 1000; // 1 day in milliseconds
+  const expirationDate = new Date(Date.now() + oneDayInMilliseconds);
   const cookieAttributes = {
-    expires: 1,       // Expires in 7 days
+    expires: 7,       // Expires in 1 days
     path: '/',        // Accessible across the entire domain
     secure: false,     // Only sent over HTTPS
     httpOnly: false,   // Accessible only through HTTP
@@ -15,34 +16,34 @@ const TokenService = () => {
 
 
   function saveCookie(token) {
-    Cookies.set('userToken', token, cookieAttributes);
+    Cookies.set('userToken_imra', token, cookieAttributes);
   }
 
   function deleteCookie() {
-    document.cookie = "userToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "userToken_imra=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     console.log('cookieDeleted');
   }
-  
+
   function getCookie() {
     const cookieString = document.cookie;
     const cookies = cookieString.split('; ');
 
     for (const cookie of cookies) {
       const [cookieName, cookieValue] = cookie.split('=');
-      if (cookieName === 'userToken') {
+      if (cookieName === 'userToken_imra') {
         return decodeURIComponent(cookieValue);
       }
     }
-    return null; 
+    return null;
   }
 
 
   function saveUserCookie(userId) {
-    Cookies.set('userId', userId, cookieAttributes);
+    Cookies.set('userId_imra', userId, cookieAttributes);
   }
 
   function deleteUserCookie() {
-    document.cookie = "userId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "userId_imra=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     console.log('cookieUserDeleted');
   }
 
@@ -52,15 +53,15 @@ const TokenService = () => {
 
     for (const cookie of cookies) {
       const [cookieName, cookieValue] = cookie.split('=');
-      if (cookieName === 'userId') {
+      if (cookieName === 'userId_imra') {
         return decodeURIComponent(cookieValue);
       }
     }
-    return null; 
+    return null;
   }
 
 
-  return {getUserCookie,saveUserCookie, deleteUserCookie,   saveCookie, getCookie, deleteCookie }
+  return { getUserCookie, saveUserCookie, deleteUserCookie, saveCookie, getCookie, deleteCookie }
 }
 
 export default TokenService

@@ -20,16 +20,17 @@ export const Receptionist = () => {
         e.preventDefault();
         setIsLoading(true);
         // getUserAllDetails('654a08cf3a690fc1fb950455').then((res) => {
-        getUserAllDetails(getUserId).then((res) => {
+        getSingleUser(getUserId).then((res) => {
+            // console.log(res.data, 'daaa');
             const response = res?.data?.data;
             setUserHistory(response)
-            console.log(response, 'response');
-            toast.success('User Found')
+            // console.log(response, 'response');
             setIsShowDetails(true);
-            getSingleUser(response[0].user).then((res) => {
+            getUserAllDetails(response._id).then((res) => {
                 const userResponse = res.data.data;
                 setUserDetails(userResponse)
-                console.log(userResponse, 'userResponse')
+                // console.log(userResponse, 'userResponse')
+                toast.success('User Found')
             }).catch((res) => {
                 console.log("error", res);
             }).finally(() => {
@@ -43,7 +44,7 @@ export const Receptionist = () => {
 
     return (
         <React.Fragment>
-          
+
 
             <section className="mainSection">
                 <div className="container">
@@ -89,37 +90,37 @@ export const Receptionist = () => {
                                                     <p>User Details </p>
                                                 </div>
                                                 <div className='receptionistUserDetails'>
-                                                    <img className='userImage' src={userDetails.avatar} alt="" />
+                                                    <img className='userImage' src={userHistory.avatar} alt="" />
                                                     <div className="userPersonalWrapper">
 
                                                         <div>
-                                                            <span className='userTitle'>FullName :</span> <span>{userDetails.fullname}</span>
+                                                            <span className='userTitle'>FullName :</span> <span>{userHistory.fullname}</span>
                                                         </div>
                                                         <div >
-                                                            <span className='userTitle'>Phone Number :</span> <span>{userDetails.phonenumber}</span>
+                                                            <span className='userTitle'>Phone Number :</span> <span>{userHistory.phonenumber}</span>
                                                         </div>
                                                         <div>
-                                                            <span className='userTitle'>Email :</span> <span>{userDetails.email}</span>
+                                                            <span className='userTitle'>Email :</span> <span>{userHistory.email}</span>
                                                         </div>
                                                         <div>
                                                             <span className='userTitle'>
                                                                 Address :
                                                             </span>  <span>
-                                                                {userDetails.address}
+                                                                {userHistory.address}
                                                             </span>
                                                         </div>
                                                         <div>
                                                             <span className='userTitle'>
                                                                 Country :
                                                             </span> <span>
-                                                                {userDetails.country}
+                                                                {userHistory.country}
                                                             </span>
                                                         </div>
                                                         <div>
                                                             <span className='userTitle'>
                                                                 Date of Birth :
                                                             </span> <span>
-                                                                {userDetails.date_of_birth}
+                                                                {userHistory.date_of_birth}
                                                             </span>
                                                         </div>
                                                     </div>
@@ -127,49 +128,62 @@ export const Receptionist = () => {
                                                 <div className="heading marginCardTop">
                                                     <p>User History </p>
                                                 </div>
-
                                                 {
-                                                    userHistory.map((item, keyId) => (
-                                                        <div className="card cardForm marginCardHalfTop" key={keyId}>
-                                                            <div className="card-body">
-                                                                <div className='receptionistUserDetails'>
-                                                                    <div className="userPersonalWrapper">
-                                                                        <div >
-                                                                            <span className='userTitle'>
-                                                                                Medical Center :
-                                                                            </span> <span>
-                                                                                {item.medCenter}
-                                                                            </span>
-                                                                        </div>
-                                                                        <div key={keyId}>
-                                                                            <span className='userTitle'>
-                                                                                Procedure :
-                                                                            </span> <span>
-                                                                                {item.procedure}
-                                                                            </span>
-                                                                        </div>
-                                                                        <div key={keyId}>
-                                                                            <span className='userTitle'>
-                                                                                Reason :
-                                                                            </span> <span>
-                                                                                {item.reason}
-                                                                            </span>
-                                                                        </div>
-                                                                        <div key={keyId}>
-                                                                            <span className='userTitle'>
-                                                                                Date :
-                                                                            </span> <span>
-                                                                                {item.date}
-                                                                            </span>
-                                                                        </div>
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    ))
-
+                                                    console.log(userDetails.length, 'userrasf')
                                                 }
+                                                {
+                                                    userDetails.length > 0 ?
+
+                                                        <React.Fragment>
+                                                            {
+                                                                userDetails.map((item, keyId) => (
+                                                                    <div className="card cardForm marginCardHalfTop" key={keyId}>
+                                                                        <div className="card-body">
+                                                                            <div className='receptionistUserDetails'>
+                                                                                <div className="userPersonalWrapper">
+                                                                                    <div >
+                                                                                        <span className='userTitle'>
+                                                                                            Medical Center :
+                                                                                        </span> <span>
+                                                                                            {item.medCenter}
+                                                                                        </span>
+                                                                                    </div>
+                                                                                    <div key={keyId}>
+                                                                                        <span className='userTitle'>
+                                                                                            Procedure :
+                                                                                        </span> <span>
+                                                                                            {item.procedure}
+                                                                                        </span>
+                                                                                    </div>
+                                                                                    <div key={keyId}>
+                                                                                        <span className='userTitle'>
+                                                                                            Reason :
+                                                                                        </span> <span>
+                                                                                            {item.reason}
+                                                                                        </span>
+                                                                                    </div>
+                                                                                    <div key={keyId}>
+                                                                                        <span className='userTitle'>
+                                                                                            Date :
+                                                                                        </span> <span>
+                                                                                            {item.date}
+                                                                                        </span>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                ))
+
+                                                            }
+                                                        </React.Fragment>
+                                                        :
+                                                        <div className="">
+                                                            <p>No History Found </p>
+                                                        </div>
+                                                }
+
                                             </React.Fragment>
 
                                     }
