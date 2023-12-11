@@ -34,30 +34,33 @@ export const Login = () => {
                 const { avatar, email, fullname, is_active, phonenumber, title, type, __v, _id, ...routesPerm } = response;
 
                 console.log(routesPerm, 'ressss');
+                let otherRoutes;
+                const routeMapping = {
+                    dashboard: ROUTES.DASHBOARD,
+                    manageUser: ROUTES.MANAGE_USER,
+                    services: ROUTES.FAQS,
+                    manageAdmin: ROUTES.ADMIN_MANAGE,
+                    addAdmin: ROUTES.ADD_ADMIN,
+                    addHospital: ROUTES.ADD_HOSPITAL,
+                    manageHospital: ROUTES.MANAGE_HOSPITAL,
+                    receptionist: ROUTES.RECEPTIONIST,
+                    add_doctor: ROUTES.ADD_DOCTOR,
+                    manage_doctor: ROUTES.MANAGE_DOCTOR,
+                };
                 if (routesPerm.dashboard === 0) {
-
-                    const routeMapping = {
-                        dashboard: ROUTES.DASHBOARD,
-                        manageUser: ROUTES.MANAGE_USER,
-                        services: ROUTES.FAQS,
-                        manageAdmin: ROUTES.ADMIN_MANAGE,
-                        addAdmin: ROUTES.ADD_ADMIN,
-                        addHospital: ROUTES.ADD_HOSPITAL,
-                        manageHospital: ROUTES.MANAGE_HOSPITAL,
-                        receptionist: ROUTES.RECEPTIONIST,
-                        add_doctor: ROUTES.ADD_DOCTOR,
-                        manage_doctor: ROUTES.MANAGE_DOCTOR,
-                    };
 
                     for (const key in routesPerm) {
                         if (routesPerm[key] === 1 && routeMapping[key]) {
-                            successLogin(loginResponse?.data, routeMapping[key])
+                            successLogin(loginResponse?.data, routeMapping[key], otherRoutes = 1)
                             return;
                         }
                     }
 
                 } else {
-                    navigate(ROUTES.DASHBOARD);
+                    // navigate(ROUTES.DASHBOARD);
+                    console.log(routeMapping.dashboard, 'dashhh');
+                    successLogin(loginResponse?.data, null , otherRoutes = 0)
+
                 }
 
             })

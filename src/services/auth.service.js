@@ -11,20 +11,25 @@ const AuthService = () => {
     const navigate = useNavigate();
     const { baseUrl } = Base();
     const { axiosInstance } = AxiosSettings();
-    const {saveCookie, deleteCookie,deleteUserCookie, saveUserCookie} = TokenService();
+    const { saveCookie, deleteCookie, deleteUserCookie, saveUserCookie } = TokenService();
 
     const postAdminLogin = (data) => {
         return axiosInstance.post(`${baseUrl}/sign-in-admin`, data);
     };
 
-    const successLogin = (response, routeName) => {
+    const successLogin = (response, routeName, isDashboard) => {
         console.log(routeName, 'resqssssssssssssssssssss');
         console.log(response, 'respppp');
-        if(response.success == 1){
+        if (response.success == 1) {
             console.log('workingggg');
             saveUserCookie(response.data?.id)
             saveCookie(response.token)
-            navigate(`/add-hospital`)
+            if (isDashboard && routeName) {
+                navigate(`/${routeName}`)
+            }
+            else {
+                navigate(ROUTES.DASHBOARD)
+            }
         }
     };
 
@@ -33,7 +38,7 @@ const AuthService = () => {
     //     return axiosInstance.post(`${baseUrl}/api-admin/register`, data);
     // };
 
-    const userLogout = ()=>{
+    const userLogout = () => {
         console.log('cookie Deleted');
         deleteCookie();
         deleteUserCookie();
