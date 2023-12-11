@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom'
 import logo from '../../../assets/images/logo/Logo.png'
 import Cookies from 'js-cookie';
 import AuthService from '../../../services/auth.service';
-// import TokenService from '../../../----services/tokenService';
-
+import { UserService } from '../../../services/user';
+import { AdminService } from '../../../services/admin';
+import { ROUTES } from '../../../../utils/routes';
 
 export const Login = () => {
 
+    const { getSingleAdmin } = AdminService()
     const { postAdminLogin, successLogin } = AuthService();
     const [login, setLogin] = useState({
         email: '',
@@ -25,7 +27,40 @@ export const Login = () => {
         const loginData = { ...login }
 
         postAdminLogin(loginData).then((res) => {
-            successLogin(res?.data)
+            // console.log(res.data.data.id, 'resssss');
+            const loginResponse = res
+            getSingleAdmin(res?.data.data.id).then((res) => {
+                const response = res?.data?.admin
+                const { avatar, email, fullname, is_active, phonenumber, title, type, __v, _id, ...routesPerm } = response;
+
+                console.log(routesPerm, 'ressss');
+                if (routesPerm.dashboard === 0) {
+
+                    const routeMapping = {
+                        dashboard: ROUTES.DASHBOARD,
+                        manageUser: ROUTES.MANAGE_USER,
+                        services: ROUTES.FAQS,
+                        manageAdmin: ROUTES.ADMIN_MANAGE,
+                        addAdmin: ROUTES.ADD_ADMIN,
+                        addHospital: ROUTES.ADD_HOSPITAL,
+                        manageHospital: ROUTES.MANAGE_HOSPITAL,
+                        receptionist: ROUTES.RECEPTIONIST,
+                        add_doctor: ROUTES.ADD_DOCTOR,
+                        manage_doctor: ROUTES.MANAGE_DOCTOR,
+                    };
+
+                    for (const key in routesPerm) {
+                        if (routesPerm[key] === 1 && routeMapping[key]) {
+                            successLogin(loginResponse?.data, routeMapping[key])
+                            return;
+                        }
+                    }
+
+                } else {
+                    navigate(ROUTES.DASHBOARD);
+                }
+
+            })
         }).catch((err) => {
             console.log(err, 'error');
         })

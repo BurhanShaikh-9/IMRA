@@ -17,12 +17,14 @@ const AuthService = () => {
         return axiosInstance.post(`${baseUrl}/sign-in-admin`, data);
     };
 
-    const successLogin = (response) => {
-        console.log(response.success, 'resqssssssssssssssssssss');
+    const successLogin = (response, routeName) => {
+        console.log(routeName, 'resqssssssssssssssssssss');
+        console.log(response, 'respppp');
         if(response.success == 1){
+            console.log('workingggg');
             saveUserCookie(response.data?.id)
             saveCookie(response.token)
-            navigate(ROUTES.DASHBOARD)
+            navigate(`/add-hospital`)
         }
     };
 

@@ -56,12 +56,13 @@ export const Sidebar = () => {
                     </div>
 
                     <ul className="sidebar-nav" id="sidebar-nav">
-                        <li className="nav-item">
-                            <NavLink className="nav-link  collapsed" activeclassname="active" to={ROUTES.DASHBOARD}>
-                                <RxDashboard className='sideIcon' /><span>Dashboard</span>
-                            </NavLink>
-                        </li>
-
+                        {userObject.dashboard == 1 &&
+                            <li className="nav-item">
+                                <NavLink className="nav-link  collapsed" activeclassname="active" to={ROUTES.DASHBOARD}>
+                                    <RxDashboard className='sideIcon' /><span>Dashboard</span>
+                                </NavLink>
+                            </li>
+                        }
                         {userObject.addHospital == 1 &&
 
                             <li className="nav-item">

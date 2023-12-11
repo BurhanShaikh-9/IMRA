@@ -1,9 +1,9 @@
 export const ROUTES = {
     DASHBOARD: "/",
     MANAGE_USER: "user",
-    MANAGE_Reported_User: "reported-user",
-    ADD_TOPICS: "add-topics",
-    UPDATE_TOPICS: "update-topics",
+    // MANAGE_Reported_User: "reported-user",
+    // ADD_TOPICS: "add-topics",
+    // UPDATE_TOPICS: "update-topics",
     UPDATE_ADMIN: "update-admin",
     LOGIN: "login",
     MANAGE_TOPICS: "manage-topics",
