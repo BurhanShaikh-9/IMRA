@@ -16,7 +16,7 @@ export const AddAdmin = () => {
         fullname: '',
         email: '',
         phonenumber: '',
-        password: '123',
+        password: '',
         avatar: '',
         title: '',
         type: 2,
@@ -150,6 +150,14 @@ export const AddAdmin = () => {
                                                     <div className="fields">
                                                         <label htmlFor="doctorName">Phone</label>
                                                         <input type="number" id="doctorName" name="phonenumber" placeholder="Enter Phone..."
+                                                            onChange={getInput} required
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
+                                                    <div className="fields">
+                                                        <label htmlFor="doctorName">Password</label>
+                                                        <input type="text" id="doctorName" name="password" placeholder="Enter Password..."
                                                             onChange={getInput} required
                                                         />
                                                     </div>
