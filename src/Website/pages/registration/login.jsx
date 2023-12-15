@@ -27,7 +27,7 @@ export const Login = () => {
         const loginData = { ...login }
 
         postAdminLogin(loginData).then((res) => {
-            // console.log(res.data.data.id, 'resssss');
+            console.log(res.data, 'resssss');
             const loginResponse = res
             getSingleAdmin(res?.data.data.id).then((res) => {
                 const response = res?.data?.admin
@@ -43,7 +43,7 @@ export const Login = () => {
                     addAdmin: ROUTES.ADD_ADMIN,
                     addHospital: ROUTES.ADD_HOSPITAL,
                     manageHospital: ROUTES.MANAGE_HOSPITAL,
-                    receptionist: ROUTES.RECEPTIONIST,
+                    reception: ROUTES.RECEPTIONIST,
                     add_doctor: ROUTES.ADD_DOCTOR,
                     manage_doctor: ROUTES.MANAGE_DOCTOR,
                 };
