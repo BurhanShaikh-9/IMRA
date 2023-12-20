@@ -77,15 +77,15 @@ export const ExternalRoutes = () => {
                     userObject?.services == 1 &&
                     <Route path={ROUTES.SERVICES} element={<Services />} />
                 }
-                {
+                {/* {
                     userObject?.reception == 1 &&
                     <Route path={ROUTES.RECEPTIONIST} element={<Receptionist />} />
-                }
+                } */}
                 {
                     userObject?.manageUser == 1 &&
                     <Route path={ROUTES.MANAGE_USER} element={<UserManage />} />
                 }
-                {
+                {/* {
                     userObject?.add_doctor == 1 &&
                     <Route path={ROUTES.ADD_DOCTOR} element={<AddDoctor />} />
                 }
@@ -96,7 +96,7 @@ export const ExternalRoutes = () => {
                         <Route path={`${ROUTES.UPDATE_DOCTOR}/:doctorId`} element={<UpdateDoctor />} />
                     </React.Fragment>
 
-                }
+                } */}
                 {
                     userObject?.services == 1 &&
                     <Route path={ROUTES.FAQS} element={<Faqs />} />

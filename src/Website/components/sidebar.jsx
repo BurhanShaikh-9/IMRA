@@ -16,12 +16,15 @@ import { FaUserNurse } from 'react-icons/fa'
 import { FaUserDoctor } from "react-icons/fa6";
 import { ROUTES } from '../../../utils/routes';
 import TokenService from '../../services/tokenService';
+import { IoIosLogOut } from "react-icons/io";
 import { AdminService } from '../../services/admin';
+import AuthService from '../../services/auth.service';
 
 export const Sidebar = () => {
 
 
-    const { sideBar, setSideBar } = useContext(SidebarContext)
+    const { sideBar, setSideBar } = useContext(SidebarContext);
+    const { userLogout } = AuthService();
     const closeButton = () => {
         setSideBar(!sideBar)
     }
@@ -41,6 +44,8 @@ export const Sidebar = () => {
             })
         }
     }, [userId])
+
+    const [modalIsOpen, setModalIsOpen] = useState(false);
 
     return (
         <>
@@ -85,14 +90,14 @@ export const Sidebar = () => {
                                 </NavLink>
                             </li>
                         }
-                        {
+                        {/* {
                             userObject.reception == 1 &&
                             <li className="nav-item">
                                 <NavLink className="nav-link  collapsed" activeclassname="active" to={ROUTES.RECEPTIONIST}>
                                     <FaUserNurse className='sideIcon' /><span>Receptionist </span>
                                 </NavLink>
                             </li>
-                        }
+                        } */}
                         {userObject.addAdmin == 1 &&
                             <li className="nav-item">
                                 <NavLink className="nav-link  collapsed" activeclassname="active" to={ROUTES.ADD_ADMIN}>
@@ -115,7 +120,7 @@ export const Sidebar = () => {
                                 </NavLink>
                             </li>
                         } */}
-                        {userObject.add_doctor == 1 &&
+                        {/* {userObject.add_doctor == 1 &&
                             <li className="nav-item">
                                 <NavLink className="nav-link  collapsed" activeclassname="active" to={ROUTES.ADD_DOCTOR}>
                                     <FaUserDoctor className='sideIcon' /><span>Add Doctor</span>
@@ -129,7 +134,7 @@ export const Sidebar = () => {
                                     <FaUserDoctor className='sideIcon' /><span>Manage Doctor</span>
                                 </NavLink>
                             </li>
-                        }
+                        } */}
                         <li className="nav-item">
                             <NavLink className="nav-link  collapsed" activeclassname="active" to={ROUTES.PROFILE}>
                                 <AiOutlineUser className='sideIcon' /><span>Profile</span>
@@ -143,9 +148,33 @@ export const Sidebar = () => {
                             </li>
                         }
 
+                        <li className="nav-item">
+                            <button className="nav-link  collapsed navItemButton" activeclassname="active" onClick={()=>setModalIsOpen(true)} >
+                                <IoIosLogOut className='sideIcon' /> <span>Logout</span>
+                            </button>
+                        </li>
+
+
                     </ul>
                 </div>
             </aside>
+
+
+            {modalIsOpen &&
+                <dialog id='confirmationModal' className='modalMain' open>
+                    <div className="modalMainInner">
+                        <button className='modalMainCloseButton' onClick={() => setModalIsOpen(false)}><RxCross2 /></button>
+                        <h3>Logout</h3>
+                        <hr />
+                        <div className='modalMainContent'>Are You Sure ?</div>
+                        <hr />
+                        <div className="modalGroupButtons">
+                            <button className='modalGroupButtons1' onClick={userLogout}>Yes</button>
+                            <button className='modalGroupButtons2' onClick={() => setModalIsOpen(false)}>No</button>
+                        </div>
+                    </div>
+                </dialog>
+            }
         </>
     )
 }

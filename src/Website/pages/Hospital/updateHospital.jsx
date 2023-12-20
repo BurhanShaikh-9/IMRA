@@ -34,6 +34,15 @@ export const UpdateHospital = () => {
         formData.set('branch', hospitalData.branch);
         formData.set('address', hospitalData.address);
 
+
+        formData.set('add_doctor', hospitalData.add_doctor);
+        formData.set('manage_doctor', hospitalData.manage_doctor);
+        formData.set('add_recption', hospitalData.add_recption);
+        formData.set('manage_recption', hospitalData.manage_recption);
+
+
+
+
         // console.log(formData, 'hosss');
 
         patchUpdateHospital(hospitalId, formData).then((res) => {
@@ -135,6 +144,60 @@ export const UpdateHospital = () => {
                                                         <input type="text" id="doctorName" name="branch" placeholder={hospitalData.branch}
                                                             onChange={onChangeHospital}
                                                         />
+                                                    </div>
+                                                </div>
+
+                                                <div className="row" style={{ marginTop: '20px' }}>
+
+                                                    <div className="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 ">
+                                                        <div className="fields">
+                                                            <label htmlFor="doctorName">Add Doctor</label>
+                                                            <label className="switch">
+                                                                <input type="checkbox" name='add_doctor'
+                                                                    onChange={onChangeHospital}
+                                                                    checked={hospitalData.add_doctor}
+                                                                />
+                                                                <span className="slider round"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 ">
+                                                        <div className="fields">
+                                                            <label htmlFor="doctorName">Manage Doctor</label>
+                                                            <label className="switch">
+                                                                <input type="checkbox" name='manage_doctor'
+                                                                    onChange={onChangeHospital}
+                                                                    checked={hospitalData.manage_doctor}
+                                                                />
+                                                                <span className="slider round"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 ">
+                                                        <div className="fields">
+                                                            <label htmlFor="doctorName">Add Reception</label>
+                                                            <label className="switch">
+                                                                <input type="checkbox" name='add_recption'
+                                                                    onChange={onChangeHospital}
+                                                                    checked={hospitalData.add_recption}
+
+                                                                />
+                                                                <span className="slider round"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-12 col-sm-12 col-md-6 col-lg-63 col-xl-3 ">
+                                                        <div className="fields">
+                                                            <label htmlFor="doctorName">Manage Reception</label>
+                                                            <label className="switch">
+                                                                <input type="checkbox" name='manage_recption'
+                                                                    onChange={onChangeHospital}
+                                                                    checked={hospitalData.manage_recption}
+
+                                                                />
+                                                                <span className="slider round"></span>
+                                                            </label>
+                                                        </div>
                                                     </div>
                                                 </div>
 

@@ -117,7 +117,7 @@ export const AddDoctor = () => {
                                                 <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
                                                     <div className="fields">
                                                         <label htmlFor="doctorName">PDMA ID</label>
-                                                        <input type="text" id="doctorName" name="pdmaid" placeholder="Enter Address..."
+                                                        <input type="text" id="doctorName" name="pdmaid" placeholder="Enter PDMA ID..."
                                                             onChange={onChangeDoctor} required
                                                         />
                                                     </div>
@@ -125,7 +125,7 @@ export const AddDoctor = () => {
                                                 <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
                                                     <div className="fields">
                                                         <label htmlFor="doctorName">Experience</label>
-                                                        <input type="text" id="doctorName" name="experience" placeholder="Enter Branch..."
+                                                        <input type="text" id="doctorName" name="experience" placeholder="Enter Experience..."
                                                             onChange={onChangeDoctor} required
                                                         />
                                                     </div>
@@ -133,7 +133,7 @@ export const AddDoctor = () => {
                                                 <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
                                                     <div className="fields">
                                                         <label htmlFor="doctorName">Qualification</label>
-                                                        <input type="text" id="doctorName" name="qualification" placeholder="Enter Branch..."
+                                                        <input type="text" id="doctorName" name="qualification" placeholder="Enter Qualificaion..."
                                                             onChange={onChangeDoctor} required
                                                         />
                                                     </div>

@@ -1249,6 +1249,22 @@ table {
   font-weight: 600;
 }
 
+.navItemButton {
+  width: 100%;
+
+  &:focus {
+    background-color: #32C6C3 !important;
+
+    svg {
+      color: white !important;
+    }
+
+    span {
+      color: white !important;
+    }
+  }
+}
+
 .bg_element_1,
 .bg_element_2 {
   position: absolute;
@@ -1297,6 +1313,10 @@ div:has(.loginLogo) {
 
 body:has(.login) {
   overflow-x: hidden;
+}
+
+.marginBottomFields {
+  margin-bottom: 15px;
 }
 
 .login {
@@ -1398,6 +1418,7 @@ body:has(.login) {
   border: none;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   min-width: 300px;
+  z-index: 4;
 
   .modalMainInner {
     position: relative;
@@ -1456,6 +1477,7 @@ body:has(.login) {
 .marginCardTop {
   margin-top: 20px;
 }
+
 .marginCardHalfTop {
   margin-top: 10px;
 }

@@ -22,6 +22,7 @@ export const Header = (props) => {
 
   let userId = getUserCookie()
   const [userObject, setUserObject] = useState({});
+  console.log(userId, 'userrrr');
 
   useEffect(() => {
     if (userId) {
@@ -31,7 +32,7 @@ export const Header = (props) => {
         setUserObject(filteredAdminData)
         // console.log(filteredAdminData, 'res');
       }).catch((err) => {
-        console.log(err, 'err');
+        console.log(err, 'error header');
       })
     }
   }, [userId])

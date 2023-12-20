@@ -53,8 +53,9 @@ export const AdminManagement = () => {
 
 
     const getInput = (id) => {
+        console.log(id, 'res');
         patchAdminToggle(id).then((res) => {
-            // console.log(res, 'res');
+            console.log(res, 'res');
             fetchData()
         }).catch(() => {
             // console.log(res, 'res');

@@ -223,7 +223,7 @@ export const AddAdmin = () => {
                                                     </div>
                                                     <div className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 ">
                                                         <div className="fields">
-                                                            <label htmlFor="doctorName">Service</label>
+                                                            <label htmlFor="doctorName">FAQs</label>
                                                             <label className="switch">
                                                                 <input type="checkbox" name='services'
                                                                     onChange={getInput}
@@ -232,7 +232,7 @@ export const AddAdmin = () => {
                                                             </label>
                                                         </div>
                                                     </div>
-                                                    <div className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 ">
+                                                    {/* <div className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 ">
                                                         <div className="fields">
                                                             <label htmlFor="doctorName">Reception</label>
                                                             <label className="switch">
@@ -242,7 +242,7 @@ export const AddAdmin = () => {
                                                                 <span className="slider round"></span>
                                                             </label>
                                                         </div>
-                                                    </div>
+                                                    </div> */}
                                                     <div className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 ">
                                                         <div className="fields">
                                                             <label htmlFor="doctorName">Manage User</label>
@@ -256,7 +256,7 @@ export const AddAdmin = () => {
                                                     </div>
 
 
-                                                    <div className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 ">
+                                                    {/* <div className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 ">
                                                         <div className="fields">
                                                             <label htmlFor="doctorName">Add Doctor</label>
                                                             <label className="switch">
@@ -278,7 +278,7 @@ export const AddAdmin = () => {
                                                                 <span className="slider round"></span>
                                                             </label>
                                                         </div>
-                                                    </div>
+                                                    </div> */}
 
 
 

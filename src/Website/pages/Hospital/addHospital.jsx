@@ -17,10 +17,17 @@ export const AddHospital = () => {
         branch: '',
         address: '',
         avatar: '',
+        password: '',
+        add_doctor: 0,
+        manage_doctor: 0,
+        add_recption: 0,
+        manage_recption: 0,
     })
 
     const onChangeHospital = (e) => {
-        setHospitalData({ ...hospitalData, [e.target.name]: e.target.value })
+        const fieldValue = e.target.type === 'checkbox' ? (e.target.checked ? 1 : 0) : e.target.value;
+
+        setHospitalData({ ...hospitalData, [e.target.name]: fieldValue })
     }
     const onChangeImage = (e) => {
         setHospitalData({ ...hospitalData, [e.target.name]: e.target.files[0] })
@@ -36,6 +43,13 @@ export const AddHospital = () => {
         formData.set('phonenumber', hospitalData.phonenumber);
         formData.set('branch', hospitalData.branch);
         formData.set('address', hospitalData.address);
+
+        formData.set('password', hospitalData.password);
+        formData.set('add_doctor', hospitalData.add_doctor);
+        formData.set('manage_doctor', hospitalData.manage_doctor);
+        formData.set('add_recption', hospitalData.add_recption);
+        formData.set('manage_recption', hospitalData.manage_recption);
+
 
         console.log(formData, 'hosss');
 
@@ -130,6 +144,64 @@ export const AddHospital = () => {
                                                         />
                                                     </div>
                                                 </div>
+
+                                                <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
+                                                    <div className="fields">
+                                                        <label htmlFor="doctorName">Password</label>
+                                                        <input type="text" id="doctorName" name="password" placeholder="Enter Password..."
+                                                            onChange={onChangeHospital} required
+                                                        />
+                                                    </div>
+                                                </div>
+
+                                                <div className="row" style={{marginTop: '20px'}}>
+
+                                                    <div className="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 ">
+                                                        <div className="fields">
+                                                            <label htmlFor="doctorName">Add Doctor</label>
+                                                            <label className="switch">
+                                                                <input type="checkbox" name='add_doctor'
+                                                                    onChange={onChangeHospital}
+                                                                />
+                                                                <span className="slider round"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 ">
+                                                        <div className="fields">
+                                                            <label htmlFor="doctorName">Manage Doctor</label>
+                                                            <label className="switch">
+                                                                <input type="checkbox" name='manage_doctor'
+                                                                    onChange={onChangeHospital}
+                                                                />
+                                                                <span className="slider round"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 ">
+                                                        <div className="fields">
+                                                            <label htmlFor="doctorName">Add Reception</label>
+                                                            <label className="switch">
+                                                                <input type="checkbox" name='add_recption'
+                                                                    onChange={onChangeHospital}
+                                                                />
+                                                                <span className="slider round"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-12 col-sm-12 col-md-6 col-lg-63 col-xl-3 ">
+                                                        <div className="fields">
+                                                            <label htmlFor="doctorName">Manage Reception</label>
+                                                            <label className="switch">
+                                                                <input type="checkbox" name='manage_recption'
+                                                                    onChange={onChangeHospital}
+                                                                />
+                                                                <span className="slider round"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
 
 
                                                 <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">

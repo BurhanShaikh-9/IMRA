@@ -37,10 +37,11 @@ const AxiosSettings = () => {
         },
         (error) => {
             // Handle response error
-            if (error.response.status === 401) {
+            // if (error.response.status === 401) {
                 
-                console.log('error in axios main');
-            }
+            //     console.log('error in axios main');
+            // }
+            console.log(error, 'error axios interceptor');
             return Promise.reject(error);
         }
     );

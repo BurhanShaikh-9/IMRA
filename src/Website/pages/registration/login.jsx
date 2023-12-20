@@ -29,7 +29,8 @@ export const Login = () => {
         postAdminLogin(loginData).then((res) => {
             console.log(res.data, 'resssss');
             const loginResponse = res
-            getSingleAdmin(res?.data.data.id).then((res) => {
+            getSingleAdmin(res?.data.Admin._id).then((res) => {
+                
                 const response = res?.data?.admin
                 const { avatar, email, fullname, is_active, phonenumber, title, type, __v, _id, ...routesPerm } = response;
 
@@ -87,12 +88,14 @@ export const Login = () => {
                                     <label htmlFor="emailLogin">Email</label>
                                     <input type="email" name='email'
                                         onChange={getInput}
+                                        required
                                     />
                                 </div>
                                 <div className="fields">
                                     <label htmlFor="passwordLogin">Password</label>
                                     <input type="password" name='password'
                                         onChange={getInput}
+                                        required
                                     />
                                 </div>
                                 {/* <div className="fields fields1">

@@ -14,7 +14,7 @@ const AuthService = () => {
     const { saveCookie, deleteCookie, deleteUserCookie, saveUserCookie } = TokenService();
 
     const postAdminLogin = (data) => {
-        return axiosInstance.post(`${baseUrl}/sign-in-admin`, data);
+        return axiosInstance.post(`${baseUrl}/login-superadmin`, data);
     };
 
     const successLogin = (response, routeName, isDashboard) => {
@@ -22,7 +22,7 @@ const AuthService = () => {
         console.log(response, 'respppp');
         if (response.success == 1) {
             console.log('workingggg');
-            saveUserCookie(response.data?.id)
+            saveUserCookie(response.Admin?._id)
             saveCookie(response.token)
             if (isDashboard && routeName) {
                 navigate(`/${routeName}`)
