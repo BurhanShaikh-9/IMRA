@@ -6,9 +6,12 @@ import AuthService from '../../../services/auth.service';
 import { UserService } from '../../../services/user';
 import { AdminService } from '../../../services/admin';
 import { ROUTES } from '../../../../utils/routes';
+import { ToastContainer, toast } from 'react-toastify';
+import { FaRegEye,FaRegEyeSlash } from "react-icons/fa";
+
 
 export const Login = () => {
-
+    const [isPass, setIsPass] = useState(false)
     const { getSingleAdmin } = AdminService()
     const { postAdminLogin, successLogin } = AuthService();
     const [login, setLogin] = useState({
@@ -28,9 +31,11 @@ export const Login = () => {
 
         postAdminLogin(loginData).then((res) => {
             console.log(res.data, 'resssss');
+            toast.success('Successfully Signed In')
+
             const loginResponse = res
             getSingleAdmin(res?.data.Admin._id).then((res) => {
-                
+
                 const response = res?.data?.admin
                 const { avatar, email, fullname, is_active, phonenumber, title, type, __v, _id, ...routesPerm } = response;
 
@@ -60,19 +65,33 @@ export const Login = () => {
                 } else {
                     // navigate(ROUTES.DASHBOARD);
                     console.log(routeMapping.dashboard, 'dashhh');
-                    successLogin(loginResponse?.data, null , otherRoutes = 0)
+                    successLogin(loginResponse?.data, null, otherRoutes = 0)
 
                 }
 
             })
         }).catch((err) => {
-            console.log(err, 'error');
+            console.log(err, 'error Login');
+            toast.error('Invalid Credentials')
+
         })
 
     }
     return (
         <React.Fragment>
             <div className="login">
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
                 <div className='bg_element_1'></div>
                 <div className='bg_element_2'></div>
                 <div className="card cardBodyRelative">
@@ -91,12 +110,20 @@ export const Login = () => {
                                         required
                                     />
                                 </div>
-                                <div className="fields">
+                                <div className="fields fieldButtonRelative">
                                     <label htmlFor="passwordLogin">Password</label>
-                                    <input type="password" name='password'
+                                    <input type={isPass ? 'text' : 'password'} name='password'
                                         onChange={getInput}
-                                        required
                                     />
+                                    <div className='fieldButtonAbsolute' onClick={(e) => { setIsPass(!isPass); e.preventDefault() }}>
+                                        {
+                                            isPass ?
+                                                <FaRegEye />
+                                                :
+                                                <FaRegEyeSlash />
+                                        }
+
+                                    </div>
                                 </div>
                                 {/* <div className="fields fields1">
                                     <div className='loginCheckBox'>
