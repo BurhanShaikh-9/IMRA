@@ -23,26 +23,7 @@ export const AdminService = () => {
     const patchAdmin = (data, id) => {
         return axiosInstance.patch(`${baseUrl}/admin-update/${id}`, data);
     };
-    // const getSingleAdmin = (id) => {
-    //     return axiosInstance.get(`${baseUrl}/api-admin/management/single-admin/${id}`);
-    // };
-    // const updateAdmin = (data, id) => {
-    //     return axiosInstance.patch(`${baseUrl}/api-admin/management/update-admin/${id}`, data);
-    // };
-    // const getDeleteAdmin = (id) => {
-    //     return axiosInstance.delete(`${baseUrl}/api-admin/management/delete-admin/${id}`);
-    // };
-    // const patchActivityAdmin = (id) => {
-    //     return axiosInstance.patch(`${baseUrl}/api-admin/management/inactive-admin/${id}`);
-    // };
-    // const getTopicsPaginated = (funcPage, funcLimit) => {
-    //     return axiosInstance.get(`${baseUrl}/api-admin/topic/gettopic`, {
-    //         params: {
-    //             page: funcPage,
-    //             limit: funcLimit,
-    //         },
-    //     });
-    // };
+  
 
   
 
