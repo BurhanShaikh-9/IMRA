@@ -11,7 +11,7 @@ export const AddAdmin = () => {
 
     const { postAdmin } = AdminService();
     const [isLoading, setIsLoading] = useState(false);
-    const [isValidPhone, setIsValidPhone] = useState(false);
+    const [isValidPhone, setIsValidPhone] = useState(true);
     const [adminData, setAdminData] = useState({
         fullname: '',
         email: '',
