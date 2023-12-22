@@ -131,14 +131,14 @@ export const AddHospital = () => {
                                                         />
                                                     </div>
                                                 </div>
-                                                <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
+                                                {/* <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
                                                     <div className="fields">
                                                         <label htmlFor="doctorName">Phone</label>
                                                         <input type="number" id="doctorName" name="phonenumber" placeholder="Enter Phone..."
                                                             onChange={onChangeHospital} required
                                                         />
                                                     </div>
-                                                </div>
+                                                </div> */}
                                                 <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
                                                     <div className="fields fieldErrorRelative">
                                                         <label htmlFor="doctorName">Phone</label>
