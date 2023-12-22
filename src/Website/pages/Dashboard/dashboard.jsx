@@ -12,7 +12,7 @@ export const Dashboard = () => {
       console.log(res.data.data, 'dashboard');
       setDashboardData(res.data.data)
     }).catch((res) => {
-      console.log(res, 'error');
+      console.log(res, 'error dashboard');
     })
   }, [])
 
