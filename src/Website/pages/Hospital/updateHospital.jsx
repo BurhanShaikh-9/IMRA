@@ -4,20 +4,38 @@ import { HospitalService } from '../../../services/hospital';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Loader from '../../components/loader';
+import { phoneValidation } from '../../../services/regex';
 
 export const UpdateHospital = () => {
     const { hospitalId } = useParams();
     const { patchUpdateHospital, getSingleHospital } = HospitalService();
     const [isLoading, setIsLoading] = useState(false)
-
+    const [isValidPhone, setIsValidPhone] = useState(false);
     const [hospitalData, setHospitalData] = useState({})
     const [localImage, setLocalImage] = useState({
         avatar: ''
     })
 
+    const validatePhone = (phone) => {
+        return phoneValidation.test(phone);
+    };
+
     const onChangeHospital = (e) => {
-        setHospitalData({ ...hospitalData, [e.target.name]: e.target.value })
-    }
+        const fieldValue = e.target.type === 'checkbox' ? (e.target.checked ? 1 : 0) : e.target.value;
+        const fieldName = e.target.name;
+        if (fieldName === 'phonenumber') {
+            const isValid = validatePhone(fieldValue);
+            setIsValidPhone(isValid);
+            if (isValid) {
+                setHospitalData({ ...hospitalData, [fieldName]: fieldValue });
+            }
+        } else {
+            setHospitalData({ ...hospitalData, [fieldName]: fieldValue });
+        }
+    };
+    // const onChangeHospital = (e) => {
+    //     setHospitalData({ ...hospitalData, [e.target.name]: e.target.value })
+    // }
     const onChangeImage = (e) => {
         setHospitalData({ ...hospitalData, [e.target.name]: e.target.files[0] })
         setLocalImage({ ...localImage, [e.target.name]: e.target.files[0] })
@@ -43,7 +61,7 @@ export const UpdateHospital = () => {
 
 
 
-        // console.log(formData, 'hosss');
+        console.log(formData, 'hosss');
 
         patchUpdateHospital(hospitalId, formData).then((res) => {
             toast.success('Hospital Updated')
@@ -60,7 +78,8 @@ export const UpdateHospital = () => {
             console.log(res, 'response hospitall');
             const { __v, _id, ...newgetData } = res?.data?.hospital
             setHospitalData(newgetData)
-
+            const isValidDefaultPhone = validatePhone(newgetData.phonenumber);
+            setIsValidPhone(isValidDefaultPhone);
             // console.log(res)
         }).catch((res) => {
             console.log(res, 'error');
@@ -122,12 +141,21 @@ export const UpdateHospital = () => {
                                                         />
                                                     </div>
                                                 </div>
-                                                <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
+                                                {/* <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
                                                     <div className="fields">
                                                         <label htmlFor="doctorName">Phone</label>
                                                         <input type="number" id="doctorName" name="phonenumber" placeholder={hospitalData.phonenumber}
                                                             onChange={onChangeHospital}
                                                         />
+                                                    </div>
+                                                </div> */}
+                                                <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
+                                                    <div className="fields fieldErrorRelative">
+                                                        <label htmlFor="doctorName">Phone</label>
+                                                        <input className={!isValidPhone && 'errorValidation'} type="number" id="doctorName" name="phonenumber" placeholder={hospitalData.phonenumber}
+                                                            onChange={onChangeHospital}
+                                                        />
+                                                        {!isValidPhone && <p className='erroValidationText'>Invalid Phone Number</p>}
                                                     </div>
                                                 </div>
                                                 <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
@@ -203,7 +231,7 @@ export const UpdateHospital = () => {
 
                                                 <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
                                                     <div className="fields">
-                                                        <button type="Submit" >
+                                                        <button type="Submit" disabled={!isValidPhone} >
                                                             Submit
                                                         </button>
                                                     </div>

@@ -5,13 +5,13 @@ import Loader from '../../components/loader';
 // import { Toast } from 'react-toastify/dist/components';
 // import { AdminService } from '../../../services/admin'
 import { toast } from 'react-toastify';
-
+import { phoneValidation } from '../../../services/regex';
 
 export const AddAdmin = () => {
 
     const { postAdmin } = AdminService();
     const [isLoading, setIsLoading] = useState(false);
-
+    const [isValidPhone, setIsValidPhone] = useState(false);
     const [adminData, setAdminData] = useState({
         fullname: '',
         email: '',
@@ -33,12 +33,22 @@ export const AddAdmin = () => {
         is_active: true
     })
 
-
+    const validatePhone = (phone) => {
+        return phoneValidation.test(phone);
+    };
+    
     const getInput = (e) => {
         const fieldValue = e.target.type === 'checkbox' ? (e.target.checked ? 1 : 0) : e.target.value;
         const fieldName = e.target.name;
-        setAdminData({ ...adminData, [fieldName]: fieldValue });
+        if (fieldName === 'phonenumber') {
+            const isValid = validatePhone(fieldValue);
+            console.log(fieldValue,isValidPhone,'vallll');
+            setIsValidPhone(isValid);
+        } else {
+            setAdminData({ ...adminData, [fieldName]: fieldValue });
+        }
     };
+    
     const getFileInput = (e) => {
         const fieldName = e.target.name;
         const fieldValue = e.target.files[0];
@@ -79,6 +89,10 @@ export const AddAdmin = () => {
             setIsLoading(false)
         })
     }
+
+    // useEffect(() => {
+    //     console.log(adminData.phonenumber ,isValidPhone , 'phonee');
+    // }, [adminData.phonenumber])
 
 
     return (
@@ -147,11 +161,12 @@ export const AddAdmin = () => {
                                                     </div>
                                                 </div>
                                                 <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
-                                                    <div className="fields">
+                                                    <div className="fields fieldErrorRelative">
                                                         <label htmlFor="doctorName">Phone</label>
-                                                        <input type="number" id="doctorName" name="phonenumber" placeholder="Enter Phone..."
+                                                        <input className={!isValidPhone && 'errorValidation'} type="number" id="doctorName" name="phonenumber" placeholder="Enter Phone..."
                                                             onChange={getInput} required
                                                         />
+                                                        {!isValidPhone && <p className='erroValidationText'>Invalid Phone Number</p>}
                                                     </div>
                                                 </div>
                                                 <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
@@ -286,7 +301,7 @@ export const AddAdmin = () => {
 
                                                 <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
                                                     <div className="fields">
-                                                        <button type="Submit" >
+                                                        <button type="Submit" disabled={!isValidPhone }>
                                                             Submit
                                                         </button>
                                                     </div>

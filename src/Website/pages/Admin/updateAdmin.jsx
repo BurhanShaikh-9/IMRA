@@ -7,6 +7,7 @@ import { AdminService } from '../../../services/admin';
 import { toast } from 'react-toastify';
 import Loader from '../../components/loader';
 import { AdminManagement } from './adminManagement';
+import { phoneValidation } from '../../../services/regex';
 
 
 export const UpdateAdmin = () => {
@@ -14,6 +15,7 @@ export const UpdateAdmin = () => {
     const { getSingleAdmin, patchAdmin } = AdminService();
     const [isLoading, setIsLoading] = useState(false);
     const [adminModel, setAdminModel] = useState({});
+    const [isValidPhone, setIsValidPhone] = useState(false);
 
     useEffect(()=>{
         console.log(adminModel,'adminModall');
@@ -23,18 +25,31 @@ export const UpdateAdmin = () => {
         getSingleAdmin(adminId).then((res) => {
             setAdminModel(res?.data?.admin)
             console.log(res?.data?.data, 'ress');
-
+            const isValidDefaultPhone = validatePhone(res?.data?.admin?.phonenumber);
+            setIsValidPhone(isValidDefaultPhone);
         }).catch((res) => {
             console.log(res, 'err');
         })
     }, [])
+  
 
-
-
+    const validatePhone = (phone) => {
+        return phoneValidation.test(phone);
+    };
+    
     const getInput = (e) => {
         const fieldValue = e.target.type === 'checkbox' ? (e.target.checked ? 1 : 0) : e.target.value;
         const fieldName = e.target.name;
-        setAdminModel({ ...adminModel, [fieldName]: fieldValue });
+        if (fieldName === 'phonenumber') {
+            const isValid = validatePhone(fieldValue);
+            // console.log(fieldValue,isValidPhone,'vallll');
+            setIsValidPhone(isValid);
+            if (isValid) {
+                setAdminModel({ ...adminModel, [fieldName]: fieldValue });
+            }
+        } else {
+            setAdminModel({ ...adminModel, [fieldName]: fieldValue });
+        }
     };
 
     const getImageInput = (e) => {
@@ -151,15 +166,14 @@ export const UpdateAdmin = () => {
                                                     </div>
                                                 </div>
                                                 <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
-                                                    <div className="fields">
+                                                    <div className="fields fieldErrorRelative">
                                                         <label htmlFor="doctorName">Phone</label>
-                                                        <input type="number" id="doctorName" name="phonenumber" placeholder={adminModel?.phonenumber}
+                                                        <input className={!isValidPhone && 'errorValidation'} type="number" id="doctorName" name="phonenumber" placeholder={adminModel?.phonenumber}
                                                             onChange={getInput}
                                                         />
+                                                        {!isValidPhone && <p className='erroValidationText'>Invalid Phone Number</p>}
                                                     </div>
                                                 </div>
-
-
                                                 <div className="row g-4">
                                                     <div className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 ">
                                                         <div className="fields">
@@ -296,7 +310,7 @@ export const UpdateAdmin = () => {
 
                                                 <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
                                                     <div className="fields">
-                                                        <button type="Submit" >
+                                                        <button type="Submit" disabled={!isValidPhone} >
                                                             Submit
                                                         </button>
                                                     </div>

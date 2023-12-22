@@ -3,11 +3,13 @@ import profilePic from '../../../assets/images/guy.png'
 import { HospitalService } from '../../../services/hospital';
 import { toast } from 'react-toastify';
 import Loader from '../../components/loader';
+import { phoneValidation } from '../../../services/regex';
 
 
 export const AddHospital = () => {
     const { postAddHospital } = HospitalService();
     const [isLoading, setIsLoading] = useState(false);
+    const [isValidPhone, setIsValidPhone] = useState(false);
 
 
     const [hospitalData, setHospitalData] = useState({
@@ -24,11 +26,20 @@ export const AddHospital = () => {
         manage_recption: 0,
     })
 
+    const validatePhone = (phone) => {
+        return phoneValidation.test(phone);
+    };
+    
     const onChangeHospital = (e) => {
         const fieldValue = e.target.type === 'checkbox' ? (e.target.checked ? 1 : 0) : e.target.value;
-
-        setHospitalData({ ...hospitalData, [e.target.name]: fieldValue })
-    }
+        const fieldName = e.target.name;
+        if (fieldName === 'phonenumber') {
+            const isValid = validatePhone(fieldValue);
+            setIsValidPhone(isValid);
+        } else {
+            setHospitalData({ ...hospitalData, [fieldName]: fieldValue });
+        }
+    };
     const onChangeImage = (e) => {
         setHospitalData({ ...hospitalData, [e.target.name]: e.target.files[0] })
     }
@@ -129,6 +140,15 @@ export const AddHospital = () => {
                                                     </div>
                                                 </div>
                                                 <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
+                                                    <div className="fields fieldErrorRelative">
+                                                        <label htmlFor="doctorName">Phone</label>
+                                                        <input className={!isValidPhone && 'errorValidation'} type="number" id="doctorName" name="phonenumber" placeholder="Enter Phone..."
+                                                            onChange={onChangeHospital} required
+                                                        />
+                                                        {!isValidPhone && <p className='erroValidationText'>Invalid Phone Number</p>}
+                                                    </div>
+                                                </div>
+                                                <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 ">
                                                     <div className="fields">
                                                         <label htmlFor="doctorName">Address</label>
                                                         <input type="text" id="doctorName" name="address" placeholder="Enter Address..."
@@ -206,7 +226,7 @@ export const AddHospital = () => {
 
                                                 <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
                                                     <div className="fields">
-                                                        <button type="Submit" >
+                                                        <button type="Submit" disabled={!isValidPhone} >
                                                             Submit
                                                         </button>
                                                     </div>
