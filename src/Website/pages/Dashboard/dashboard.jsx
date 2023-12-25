@@ -24,12 +24,12 @@ export const Dashboard = () => {
     series: [
       {
         name: 'Series 1',
-        data: [dashboardData?.adminCount, dashboardData?.hospitalCount, dashboardData?.userCount] || [0],
+        data: [dashboardData?.DoctorCount, dashboardData?.hospCount, dashboardData?.userCount, dashboardData?.recpCount] || [0],
       }
     ],
     colors: ['#32C6C3'],
     xaxis: {
-      categories: ['Admin', 'Hospital', 'Users',]
+      categories: ['Doctor', 'Hospital', 'Users', 'Receptionist']
     },
     yaxis: {
       labels: {
